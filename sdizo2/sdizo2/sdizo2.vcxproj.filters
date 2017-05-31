@@ -18,18 +18,45 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="source\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="source\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\appController\AppController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\genericController\GenericController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\genericProblemController\GenericProblemController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\array\Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\app\appMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="source\sdizo2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sdizo2.cpp">
+    <ClCompile Include="source\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\appController\AppController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\genericController\GenericController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\genericProblemController\GenericProblemController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\app\appMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

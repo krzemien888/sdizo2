@@ -7,8 +7,16 @@
 
 #include "targetver.h"
 
-#include <stdio.h>
-#include <tchar.h>
+#include <iostream>
+#include <string>
+#include <memory>
+#include <exception>
+#include <Windows.h>
+#include <fstream>
+#include <ctime>
+#include <sstream>
+#include <cmath>
+#include <chrono>
 
 
 
