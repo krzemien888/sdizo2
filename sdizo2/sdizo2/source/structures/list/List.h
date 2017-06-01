@@ -2,24 +2,31 @@
 #include "stdafx.h"
 
 template<class T>
-class Lists
+class List
 {
+	friend std::ostream& operator<<(std::ostream& str, const List<T>& s);
+
 public:
 	virtual ~List() {};
 
-	virtual void printData();
+	void printData();
 	
-	virtual void pushBack(T value);
-	virtual void pushFront(T value);
-	virtual void addElement(int index, T value);
-	virtual void addElement(T value);
-	virtual void removeElement(T value);
-	virtual void clearStructure();
-	virtual bool findValue(T toFind);
+	void pushBack(T value);
+	void pushFront(T value);
+	void addElement(int index, T value);
+	void addElement(T value);
+	void removeElement(T value);
+	void clearStructure();
+	bool findValue(T toFind);
+	T getValue(int index);
+	T* getIterator(int index);
+
 
 	virtual int getSize();
+	bool operator==(const List<T>& l);
 
 private:
+	
 	class Node {
 	public:
 		Node(T value) : data(value) {};
@@ -31,11 +38,70 @@ private:
 	std::shared_ptr<Node> head;
 	std::shared_ptr<Node> tail;
 	bool isEmpty();
-	std::shared_ptr<Node> getNodePtr(int index);
+	typename List<T>::Node* getNodePtr(int index);
 	int size = 0;
 };
 
+using namespace std;
 
+template<class T>
+std::ostream& operator<<(std::ostream& str, const List<T>& s)
+{
+	for (auto e : s)
+		str << e;
+	return str;
+}
+
+template<class T>
+bool List<T>::operator==(const List<T>& l)
+{
+	if (getSize() != l.getSize())
+		return false;
+
+	if (getSize() == 0)
+		return true;
+
+	bool compare = true;
+
+	typename List<T>::Node* l1 = l.getIterator(0);
+	typename List<T>::Node* l2 = getIterator(0);
+
+	for (auto i = 0; i < getSize(); i++)
+	{
+		compare = (l1->data == l2->data);
+		l1 = l1->next.get();
+		l2 = l2->next.get();
+	}
+
+}
+
+template<class T>
+T* getIterator(int index)
+{
+	if (index == 0)
+		return head.get();
+	if (index == getSize() - 1)
+		return tail.get();
+
+	typename List<T>::Node* output = head.get();
+	for (auto i = 0; i <= index; i++)
+		output = output->next().get();
+	return output;
+}
+
+template<class T>
+T getValue(int index)
+{
+	if (index == 0)
+		return head->data;
+	if (index == getSize() - 1)
+		return tail->data;
+
+	typename List<T>::Node* output = head.get();
+	for (auto i = 0; i <= index; i++)
+		output = output->next();
+	return output->data;
+}
 
 template<class T>
 void List<T>::printData()
@@ -65,7 +131,7 @@ void List<T>::printData()
 }
 
 template<class T>
-void List<T>::pushBack(int value)
+void List<T>::pushBack(T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 
@@ -85,7 +151,7 @@ void List<T>::pushBack(int value)
 }
 
 template<class T>
-void List<T>::pushFront(int value)
+void List<T>::pushFront(T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 
@@ -105,10 +171,10 @@ void List<T>::pushFront(int value)
 }
 
 template<class T>
-void List<T>::addElement(int index, int value)
+void List<T>::addElement(int index, T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
-	shared_ptr<Node> currNode = getNodePtr(index);
+	shared_ptr<Node> currNode = make_shared<Node>(getNodePtr(index));
 
 	if (index == 0)
 	{
@@ -145,13 +211,13 @@ void List<T>::addElement(int index, int value)
 }
 
 template<class T>
-void List<T>::addElement(int value)
+void List<T>::addElement(T value)
 {
 	pushBack(value);
 }
 
 template<class T>
-void List<T>::removeElement(int value)
+void List<T>::removeElement(T value)
 {
 	if (findValue(value))
 		--size;
@@ -201,7 +267,7 @@ void List<T>::clearStructure()
 }
 
 template<class T>
-bool List<T>::findValue(int toFind)
+bool List<T>::findValue(T toFind)
 {
 	if (isEmpty())
 		return false;
@@ -229,7 +295,7 @@ bool List<T>::isEmpty()
 }
 
 template<class T>
-shared_ptr<List<T>::Node> List<T>::getNodePtr(int index)
+typename List<T>::Node* List<T>::getNodePtr(int index)
 {
 	if (isEmpty())
 		return nullptr;

@@ -142,6 +142,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MatrixGraph.h" />
+    <ClInclude Include="source\structures\utilities\Graph\Graph.h" />
     <ClInclude Include="source\controllers\genericProblemController\GenericProblemController.h" />
     <ClInclude Include="source\controllers\appController\AppController.h" />
     <ClInclude Include="source\controllers\genericController\GenericController.h" />
@@ -157,6 +159,7 @@
     <ClInclude Include="source\views\app\appMenu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MatrixGraph.cpp" />
     <ClCompile Include="source\controllers\genericProblemController\GenericProblemController.cpp" />
     <ClCompile Include="source\controllers\appController\AppController.cpp" />
     <ClCompile Include="source\controllers\genericController\GenericController.cpp" />
