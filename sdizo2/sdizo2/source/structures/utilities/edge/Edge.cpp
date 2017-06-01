@@ -31,6 +31,31 @@ bool Edge::operator==(const Edge & e)
 		&& m_value == e.getValue());
 }
 
+bool Edge::operator<(const Edge & e)
+{
+	return (getValue() < e.getValue());
+}
+
+bool Edge::operator<=(const Edge & e)
+{
+	return (getValue() < e.getValue() || (*this) == e);
+}
+
+bool Edge::operator>(const Edge & e)
+{
+	return (getValue() > e.getValue());
+}
+
+bool Edge::operator>=(const Edge & e)
+{
+	return (getValue() > e.getValue() || (*this) == e);
+}
+
+bool Edge::operator!=(const Edge & e)
+{
+	return !((*this) == e);
+}
+
 std::ostream& operator<<(std::ostream& str, const Edge& s) {
 	Point* start = s.getStart();
 	Point* end = s.getEnd();

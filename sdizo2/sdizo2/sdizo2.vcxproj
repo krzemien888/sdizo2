@@ -147,6 +147,7 @@
     <ClInclude Include="source\controllers\genericController\GenericController.h" />
     <ClInclude Include="source\stdafx.h" />
     <ClInclude Include="source\structures\array\Array.h" />
+    <ClInclude Include="source\structures\list\List.h" />
     <ClInclude Include="source\structures\priorityQueue\PriorityQueue.h">
       <FileType>CppHeader</FileType>
     </ClInclude>

@@ -16,6 +16,11 @@ public:
 	Point* getEnd() const;
 
 	bool operator==(const Edge& e);
+	bool operator<(const Edge& e);
+	bool operator<=(const Edge& e);
+	bool operator>(const Edge& e);
+	bool operator>=(const Edge& e);
+	bool operator!=(const Edge& e);
 
 private:
 	int m_value;
