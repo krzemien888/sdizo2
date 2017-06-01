@@ -30,3 +30,10 @@ bool Edge::operator==(const Edge & e)
 		&& m_endPoint == e.getEnd()
 		&& m_value == e.getValue());
 }
+
+std::ostream& operator<<(std::ostream& str, const Edge& s) {
+	Point* start = s.getStart();
+	Point* end = s.getEnd();
+	str << start->getName() << " -> " << end->getName() << " (" << s.getValue() << ")";
+	return str;
+}

@@ -4,6 +4,8 @@
 
 class Edge
 {
+	friend std::ostream& operator<<(std::ostream& str, const Edge& s);
+
 public:
 	~Edge() = default;
 	Edge::Edge() = default;
@@ -20,10 +22,3 @@ private:
 	Point* m_startPoint;
 	Point* m_endPoint;
 };
-
-std::ostream& operator<<(std::ostream& str, const Edge& s) {
-	Point* start = s.getStart();
-	Point* end = s.getEnd();
-	str << start->getName() << " -> " << end->getName() << " (" << s.getValue() << ")";
-	return str;
-}

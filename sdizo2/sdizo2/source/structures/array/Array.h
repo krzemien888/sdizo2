@@ -51,8 +51,6 @@ public:
 			data[index] = value;
 			++currSize;
 		}
-		//else if (index == currSize)
-		//	pushBack(value);
 		else
 		{
 			throw std::invalid_argument("Indeks poza zasiêgiem tablicy");
@@ -62,13 +60,6 @@ public:
 
 	void pushBack(T value) {
 		addElement(getSize(), value);
-	/*	if (allocatedSize < currSize + 1)
-			if (isCheap)
-				this->realocate(allocatedSize + 1);
-			else
-				realocateByStep();
-		currSize++;
-		data[currSize - 1] = value;*/
 	};
 
 
