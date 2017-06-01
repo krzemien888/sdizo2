@@ -147,7 +147,9 @@
     <ClInclude Include="source\controllers\genericController\GenericController.h" />
     <ClInclude Include="source\stdafx.h" />
     <ClInclude Include="source\structures\array\Array.h" />
-    <ClInclude Include="source\structures\heap\PriorityQueue.h" />
+    <ClInclude Include="source\structures\priorityQueue\PriorityQueue.h">
+      <FileType>CppHeader</FileType>
+    </ClInclude>
     <ClInclude Include="source\structures\utilities\edge\Edge.h" />
     <ClInclude Include="source\structures\utilities\point\Point.h" />
     <ClInclude Include="source\targetver.h" />
@@ -164,7 +166,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\structures\heap\PriorityQueue.cpp" />
     <ClCompile Include="source\structures\utilities\edge\Edge.cpp" />
     <ClCompile Include="source\structures\utilities\point\Point.cpp" />
     <ClCompile Include="source\views\app\appMenu.cpp" />

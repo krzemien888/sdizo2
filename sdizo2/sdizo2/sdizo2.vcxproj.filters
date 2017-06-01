@@ -39,13 +39,13 @@
     <ClInclude Include="source\views\app\appMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\structures\heap\PriorityQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\structures\utilities\edge\Edge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\structures\utilities\point\Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\priorityQueue\PriorityQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -66,9 +66,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\views\app\appMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\structures\heap\PriorityQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\structures\utilities\edge\Edge.cpp">

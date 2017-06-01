@@ -2,13 +2,11 @@
 #include "AppController.h"
 #include "views\app\appMenu.h"
 
-
 using namespace std;
 
 AppController::AppController() : GenericController()
 {
 	setlocale(LC_ALL, "Polish");
-	arr = make_unique<Array<int>>(10);
 }
 
 void AppController::parseInput(const std::string &input)

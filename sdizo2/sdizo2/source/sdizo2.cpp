@@ -4,15 +4,19 @@
 #include "stdafx.h"
 #include "controllers\appController\AppController.h"
 
-//#include "structures\heap\PriorityQueue.h"
-//#include "structures\heap\PriorityQueue.cpp"
-
-
 int main()
 {
 	AppController app;
 
-	app.Run();
+	try {
+		app.Run();
+	}
+	catch (...)
+	{
+		std::cout << "Critical error, application shutdown.\n";
+		system("pause");
+	}
+
     return 0;
 }
 

@@ -67,8 +67,10 @@ public:
 		if (index >= 0 && index < getSize())
 		{
 			moveElementsLeft(index);
-			if(isCheap)
+			if (isCheap)
 				realocate(allocatedSize - 1);
+			else
+				currSize--;
 		}
 		else
 		{
