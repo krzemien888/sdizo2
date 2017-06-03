@@ -12,14 +12,20 @@ public:
 	{};
 
 	Array(int size) :
-		data(std::make_unique<T[]>(size))
+		data(std::make_shared<T[]>(size))
 	{
 		allocatedSize = size;
 		isCheap = false;
 		currSize = 0;
 	};
 
-	~Array() {};
+	Array(const Array<T> &a)
+	{
+		for (int i = 0; i < a.getSize(); i++)
+			pushBack(a[i]);
+	}
+
+	~Array() { clearStructure(); };
 
 
 	void printData() {
@@ -35,9 +41,9 @@ public:
 	void addElement(int index, T value) {
 		if (isEmpty() && index == 0)
 		{
-			data = std::make_unique<T[]>(1);
+			data = new T[1];
 			allocatedSize = 1;
-			data[index] = value;
+			data[index] = std::move(value);
 			++currSize;
 		}
 		else if (index >= 0 && index <= currSize)
@@ -82,7 +88,7 @@ public:
 
 
 	void clearStructure() {
-		data.reset();
+		delete[] data;
 		currSize = 0;
 		allocatedSize = 0;
 	};
@@ -91,16 +97,16 @@ public:
 	void realocate(int newSize) {
 		if (newSize == 0)
 		{
-			data.reset();
+			delete[] data;
 			currSize = 0;
 			allocatedSize = 0;
 		}
 
-		std::unique_ptr<T[]> newData = std::make_unique<T[]>(newSize);
+		T* newData = new T[newSize];
 		int moveDataToIndex = (newSize > currSize) ? currSize : newSize;
 		for (int index = 0; index < moveDataToIndex; index++)
 			newData[index] = data[index];
-		data.reset();
+		delete[] data;
 		data = std::move(newData);
 		allocatedSize = newSize;
 		currSize = moveDataToIndex;
@@ -113,7 +119,9 @@ public:
 				return true;
 		return false;
 	};
-	int getSize() {
+
+	int getSize() const
+	{
 		return currSize;
 	};
 
@@ -121,7 +129,7 @@ public:
 		return (currSize == 0);
 	};
 
-	T getValue(int index) {
+	T getValue(int index) const{
 		if (index >= currSize)
 			throw std::invalid_argument("Out of Array range");
 		return data[index];
@@ -136,8 +144,9 @@ public:
 		data[b] = data[a];
 		data[a] = tmp;
 	};
-	T operator[](int index) {
-		return data[index];
+
+	T operator[](int index) const {
+		return getValue(index);
 	};
 
 	int getAllocatedSize() const
@@ -146,7 +155,7 @@ public:
 	};
 
 private:
-	std::unique_ptr<T[]> data;
+	T* data;
 	int currSize = 0;
 	int allocatedSize = 0;
 	int realocationStep = 1;

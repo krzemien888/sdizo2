@@ -7,7 +7,7 @@ class List
 	friend std::ostream& operator<<(std::ostream& str, const List<T>& s);
 
 public:
-	virtual ~List() {};
+	virtual ~List() { clearStructure(); };
 
 	void printData();
 	
@@ -20,7 +20,8 @@ public:
 	bool findValue(T toFind);
 	T getValue(int index);
 	T* getIterator(int index);
-
+	T* begin();
+	T* end();
 
 	virtual int getSize();
 	bool operator==(const List<T>& l);
@@ -47,8 +48,9 @@ using namespace std;
 template<class T>
 std::ostream& operator<<(std::ostream& str, const List<T>& s)
 {
-	for (auto e : s)
-		str << e;
+	for (auto i = 0; i < m_matrix.getSize(); i++)
+		str <<  m_matrix.getValue(i);
+
 	return str;
 }
 
@@ -76,21 +78,25 @@ bool List<T>::operator==(const List<T>& l)
 }
 
 template<class T>
-T* getIterator(int index)
+T* List<T>::getIterator(int index)
 {
 	if (index == 0)
-		return head.get();
+		return &(head.get()->data);
 	if (index == getSize() - 1)
-		return tail.get();
+		return &(tail.get()->data);
 
-	typename List<T>::Node* output = head.get();
+	auto output = head.get();
+
+	if (!output)
+		return nullptr;
+
 	for (auto i = 0; i <= index; i++)
-		output = output->next().get();
-	return output;
+		output = output->next.get();
+	return &(output->data);
 }
 
 template<class T>
-T getValue(int index)
+T List<T>::getValue(int index)
 {
 	if (index == 0)
 		return head->data;
@@ -99,7 +105,7 @@ T getValue(int index)
 
 	typename List<T>::Node* output = head.get();
 	for (auto i = 0; i <= index; i++)
-		output = output->next();
+		output = output->next.get();
 	return output->data;
 }
 
@@ -114,15 +120,6 @@ void List<T>::printData()
 		{
 			cout << tmp->data << " ";
 			tmp = tmp->next.get();
-		}
-		cout << endl;
-
-		tmp = tail.get();
-
-		while (tmp != nullptr)
-		{
-			cout << tmp->data << " ";
-			tmp = tmp->prev.get();
 		}
 		cout << endl;
 	}

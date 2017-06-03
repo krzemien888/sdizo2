@@ -54,7 +54,7 @@
     <ClInclude Include="source\structures\utilities\Graph\Graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixGraph.h">
+    <ClInclude Include="source\structures\utilities\matrixGraph\MatrixGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClCompile Include="source\structures\utilities\point\Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixGraph.cpp">
+    <ClCompile Include="source\structures\utilities\matrixGraph\MatrixGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
