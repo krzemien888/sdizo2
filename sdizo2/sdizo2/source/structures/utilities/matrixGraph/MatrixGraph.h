@@ -1,12 +1,12 @@
 #pragma once
 #include "structures\utilities\graph\Graph.h"
-#include "structures\array\Array.h"
+#include "structures\matrix\Matrix.h"
 
 class MatrixGraph :
 	public Graph
 {
 public:
-	MatrixGraph() = default;
+	MatrixGraph();
 
 	void clear();
 	void addEdge(Edge e);
@@ -16,6 +16,6 @@ public:
 	virtual ~MatrixGraph();
 
 private:
-	Array<Array<int>> m_matrix;
+	Matrix m_matrix;
 };
 

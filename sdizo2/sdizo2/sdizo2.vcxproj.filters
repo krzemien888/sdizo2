@@ -57,6 +57,12 @@
     <ClInclude Include="source\structures\utilities\matrixGraph\MatrixGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\structures\matrix\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\utilities\listGraph\listGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -84,6 +90,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\structures\utilities\matrixGraph\MatrixGraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\matrix\Matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\utilities\listGraph\listGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

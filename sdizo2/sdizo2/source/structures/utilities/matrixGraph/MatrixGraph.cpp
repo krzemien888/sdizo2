@@ -2,37 +2,40 @@
 #include "MatrixGraph.h"
 
 
+#include "structures\array\Array.h"
+#include "structures\list\List.h"
+
+MatrixGraph::MatrixGraph()
+{
+	m_matrix.resize(0);
+}
+
 void MatrixGraph::clear()
 {
-	m_matrix.clearStructure();
+	m_matrix.resize(0);
 }
 
 void MatrixGraph::addEdge(Edge e)
 {
-
+	m_matrix.setValue(e.getStart()->getName(), e.getEnd()->getName(), e.getValue());
+	if(!(e.isDirected()))
+		m_matrix.setValue(e.getEnd()->getName(), e.getStart()->getName(), e.getValue());
 }
 
 void MatrixGraph::addPoint(Point p)
 {
-	Array<int> l;
-	m_matrix.pushBack(l);
-	
+	m_matrix.resize(m_matrix.getSize() + 1);
 
-	for (auto i = 0; i < m_matrix.getSize(); i++)
+	for (int i = 0; i < m_matrix.getSize(); i++)
 	{
-		auto row = &(m_matrix[i]);
-		while (m_matrix.getSize() != row->getSize())
-			row->pushBack(0);
+		m_matrix.setValue(m_matrix.getSize() - 1, i, 0);
+		m_matrix.setValue(i, m_matrix.getSize() - 1, 0);
 	}
 }
 
 void MatrixGraph::print()
 {
-	for (auto i = 0; i < m_matrix.getSize(); i++)
-	{
-		auto row = m_matrix.getValue(i);
-		row.printData();
-	}
+	m_matrix.print();
 }
 
 

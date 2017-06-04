@@ -2,8 +2,35 @@
 #include "Point.h"
 
 
+int Point::nameCounter = 0;
 
-std::string Point::getName()
+Point::Point()
+{
+	//m_name = getCounter();
+}
+
+Point::Point(int name)
+	: m_name(name)
+{
+//	resetCounter(name + 1);
+}
+
+Point::~Point()
+{
+	//resetCounter(getCounter() - 1);
+}
+
+int Point::getName() const
 {
 	return m_name;
+}
+
+int Point::getCounter()
+{
+	return Point::nameCounter++;
+}
+
+void Point::resetCounter(int base)
+{
+	Point::nameCounter = base;
 }

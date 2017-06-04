@@ -4,13 +4,16 @@
 class Point
 {
 public:
-	Point() = default;
-	Point(std::string name) : m_name(name) {}
-	~Point() = default;
+	Point();
+	Point(int name);
+	~Point();
 
-	std::string getName();
+	int getName() const;
 
+	static int getCounter();
+	static void resetCounter(int base);
 private:
-	std::string m_name;
+	int m_name;
+	static int Point::nameCounter;
 };
 

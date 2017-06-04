@@ -7,40 +7,46 @@ class List
 	friend std::ostream& operator<<(std::ostream& str, const List<T>& s);
 
 public:
-	virtual ~List() { clearStructure(); };
+	List() = default;
+	~List() { clearStructure(); };
+
+	List(const List<T> &l);
+
 
 	void printData();
 	
-	void pushBack(T value);
+	void pushBack(const T value);
 	void pushFront(T value);
 	void addElement(int index, T value);
 	void addElement(T value);
 	void removeElement(T value);
 	void clearStructure();
 	bool findValue(T toFind);
-	T getValue(int index);
+	T getValue(int index) const;
 	T* getIterator(int index);
-	T* begin();
-	T* end();
 
-	virtual int getSize();
+	int getSize() const;
 	bool operator==(const List<T>& l);
 
+	List<T>& operator=(const List<T>&l);
+	void setDiplayInline(bool toset);
+	bool isInlineDisplayed();
 private:
 	
 	class Node {
 	public:
-		Node(T value) : data(value) {};
-		std::shared_ptr<Node> next;
-		std::shared_ptr<Node> prev;
-		T	data;
+		Node(const T &value) : data(value) {};
+		std::shared_ptr<Node> next = nullptr;
+		std::shared_ptr<Node> prev = nullptr;
+		const T	data;
 	};
 
-	std::shared_ptr<Node> head;
-	std::shared_ptr<Node> tail;
+	std::shared_ptr<Node> head = nullptr;
+	std::shared_ptr<Node> tail = nullptr;
 	bool isEmpty();
 	typename List<T>::Node* getNodePtr(int index);
 	int size = 0;
+	bool displayInline = true;
 };
 
 using namespace std;
@@ -48,11 +54,17 @@ using namespace std;
 template<class T>
 std::ostream& operator<<(std::ostream& str, const List<T>& s)
 {
-	for (auto i = 0; i < m_matrix.getSize(); i++)
-		str <<  m_matrix.getValue(i);
-
+	for (auto i = 0; i < s.getSize(); i++)
+	{
+		str <<  s.getValue(i);
+		if (s.isDisplayedInline())
+			str << ' ';
+		else
+			str << std::endl;
+	}
 	return str;
 }
+
 
 template<class T>
 bool List<T>::operator==(const List<T>& l)
@@ -78,6 +90,28 @@ bool List<T>::operator==(const List<T>& l)
 }
 
 template<class T>
+inline List<T>& List<T>::operator=(const List<T>& l)
+{
+	if (this == &l)
+		return *this;
+	for (int i = 0; i < l.getSize(); i++)
+		pushBack(l.getValue(i));
+	return *this;
+}
+
+template<class T>
+inline void List<T>::setDiplayInline(bool toSet)
+{
+	displayInline = toSet;
+}
+
+template<class T>
+inline bool List<T>::isInlineDisplayed()
+{
+	return displayInline;
+}
+
+template<class T>
 T* List<T>::getIterator(int index)
 {
 	if (index == 0)
@@ -96,7 +130,7 @@ T* List<T>::getIterator(int index)
 }
 
 template<class T>
-T List<T>::getValue(int index)
+T List<T>::getValue(int index) const
 {
 	if (index == 0)
 		return head->data;
@@ -107,6 +141,13 @@ T List<T>::getValue(int index)
 	for (auto i = 0; i <= index; i++)
 		output = output->next.get();
 	return output->data;
+}
+
+template<class T>
+inline List<T>::List(const List<T> &l)
+{
+	for (int i = 0; i < l.getSize(); i++)
+		pushBack(l.getValue(i));
 }
 
 template<class T>
@@ -128,7 +169,7 @@ void List<T>::printData()
 }
 
 template<class T>
-void List<T>::pushBack(T value)
+void List<T>::pushBack(const T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 
@@ -280,7 +321,7 @@ bool List<T>::findValue(T toFind)
 }
 
 template<class T>
-int List<T>::getSize()
+int List<T>::getSize() const
 {
 	return size;
 }
