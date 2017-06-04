@@ -28,7 +28,9 @@ public:
 	Edge& Edge::operator=(Edge& e);
 
 	void setDirected(bool toSet);
-	bool isDirected();
+	bool isDirected()const;
+
+	Edge getInverted() const;
 
 private:
 	bool m_directed = false;

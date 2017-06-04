@@ -15,7 +15,22 @@ void listGraph::clear()
 
 void listGraph::addEdge(const Edge &e)
 {
+	Node* lastNode = &(m_data[e.getStart()->getName()]);
 
+	while (lastNode->next != nullptr)
+		lastNode = lastNode->next;
+	
+	lastNode->next = new Node();
+	lastNode->next->data = new Edge();
+	lastNode->next->data->setStart(*e.getStart());
+	lastNode->next->data->setEnd(*e.getEnd());
+	lastNode->next->prev = lastNode;
+	if (!e.isDirected())
+	{
+		Edge newE = e.getInverted();
+		newE.setDirected(true);
+		addEdge(newE);
+	}
 }
 
 void listGraph::addPoint(const Point &p)
@@ -60,7 +75,10 @@ void listGraph::print()
 		auto currNode = &(m_data[i]);
 		while (currNode != nullptr)
 		{
-			cout << currNode->data->getStart()->getName() << " ";
+			if(currNode == &(m_data[i]))
+				cout << currNode->data->getStart()->getName() << " ";
+			else
+				cout << currNode->data->getEnd()->getName() << " ";
 			currNode = currNode->next;
 		}
 		cout << endl;

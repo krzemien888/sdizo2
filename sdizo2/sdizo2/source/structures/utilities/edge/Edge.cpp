@@ -108,9 +108,14 @@ void Edge::setDirected(bool toSet)
 	m_directed = toSet;
 }
 
-bool Edge::isDirected()
+bool Edge::isDirected() const
 {
 	return m_directed;
+}
+
+Edge Edge::getInverted() const
+{
+	return Edge(getValue(), *m_endPoint, *m_startPoint);
 }
 
 std::ostream& operator<<(std::ostream& str, const Edge& s) {
