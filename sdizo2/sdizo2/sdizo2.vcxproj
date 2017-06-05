@@ -143,6 +143,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\views\mst\mstMenu.h" />
     <ClInclude Include="source\structures\utilities\listGraph\listGraph.h" />
     <ClInclude Include="source\structures\matrix\Matrix.h" />
     <ClInclude Include="source\structures\utilities\matrixGraph\MatrixGraph.h" />
@@ -160,8 +161,11 @@
     <ClInclude Include="source\structures\utilities\point\Point.h" />
     <ClInclude Include="source\targetver.h" />
     <ClInclude Include="source\views\app\appMenu.h" />
+    <ClInclude Include="source\views\genericView\GenericView.h" />
+    <ClInclude Include="source\views\spp\sppMenu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\views\mst\mstMenu.cpp" />
     <ClCompile Include="source\structures\utilities\listGraph\listGraph.cpp" />
     <ClCompile Include="source\structures\matrix\Matrix.cpp" />
     <ClCompile Include="source\structures\utilities\matrixGraph\MatrixGraph.cpp" />
@@ -178,6 +182,7 @@
     <ClCompile Include="source\structures\utilities\edge\Edge.cpp" />
     <ClCompile Include="source\structures\utilities\point\Point.cpp" />
     <ClCompile Include="source\views\app\appMenu.cpp" />
+    <ClCompile Include="source\views\spp\sppMenu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

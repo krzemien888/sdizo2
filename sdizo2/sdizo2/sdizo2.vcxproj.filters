@@ -63,6 +63,15 @@
     <ClInclude Include="source\structures\utilities\listGraph\listGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\views\genericView\GenericView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\mst\mstMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\spp\sppMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -96,6 +105,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\structures\utilities\listGraph\listGraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\mst\mstMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\spp\sppMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
