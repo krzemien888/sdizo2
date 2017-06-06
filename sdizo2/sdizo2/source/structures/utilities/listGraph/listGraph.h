@@ -4,10 +4,10 @@
 #include "structures\utilities\edge\Edge.h"
 #include "structures\utilities\point\Point.h"
 
-class listGraph
+class ListGraph
 {
 public:
-	listGraph();
+	ListGraph();
 
 	void clear();
 	void addEdge(const Edge &e);
@@ -15,7 +15,7 @@ public:
 	int getSize();
 	void print();
 
-	virtual ~listGraph();
+	virtual ~ListGraph();
 
 	class Node {
 		public:

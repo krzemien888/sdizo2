@@ -1,19 +1,19 @@
 #include "stdafx.h"
-#include "listGraph.h"
+#include "ListGraph.h"
 
 using namespace std;
 
-listGraph::listGraph()
+ListGraph::ListGraph()
 {
 
 }
 
-void listGraph::clear()
+void ListGraph::clear()
 {
 	m_size = 0;
 }
 
-void listGraph::addEdge(const Edge &e)
+void ListGraph::addEdge(const Edge &e)
 {
 	Node* lastNode = &(m_data[e.getStart()->getName()]);
 
@@ -33,7 +33,7 @@ void listGraph::addEdge(const Edge &e)
 	}
 }
 
-void listGraph::addPoint(const Point &p)
+void ListGraph::addPoint(const Point &p)
 {
 	if (m_data == nullptr)
 	{
@@ -63,12 +63,12 @@ void listGraph::addPoint(const Point &p)
 	m_data[getSize() - 1].data->setStart(p);
 }
 
-int listGraph::getSize()
+int ListGraph::getSize()
 {
 	return m_size;
 }
 
-void listGraph::print()
+void ListGraph::print()
 {
 	for (int i = 0; i < getSize(); i++)
 	{
@@ -85,7 +85,7 @@ void listGraph::print()
 	}
 }
 
-listGraph::~listGraph()
+ListGraph::~ListGraph()
 {
 	for (int i = 0; i < getSize(); i++)
 		m_data[i].clearList();

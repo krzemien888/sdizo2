@@ -5,7 +5,7 @@
 #include "controllers\appController\AppController.h"
 
 #include "structures\utilities\matrixGraph\MatrixGraph.h"
-#include "structures\utilities\listGraph\listGraph.h"
+#include "structures\utilities\ListGraph\ListGraph.h"
 #include "structures\array\Array.h"
 
 
