@@ -13,6 +13,6 @@ class AppController :
 		virtual void init();	
 	private:
 
-		std::unique_ptr<GenericProblemController> controller;
+		std::unique_ptr<GenericController> controller;
 };
 

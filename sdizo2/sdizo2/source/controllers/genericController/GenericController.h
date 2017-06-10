@@ -14,9 +14,8 @@ public:
 	void Run();
 	void Stop();
 
-protected:
 	std::unique_ptr<GenericView> view;
-
+protected:
 	virtual void init() = 0;
 
 private:

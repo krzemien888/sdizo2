@@ -42,9 +42,10 @@ void GenericController::Run()
 		{
 			this->parseInput(userInput);
 		}
-		catch (invalid_argument&)
+		catch (invalid_argument& e)
 		{
 			cout << "Nieprawidłowy argument" << endl;
+			cout << e.what();
 			system("pause");
 		}
 	} while (this->isRunning());

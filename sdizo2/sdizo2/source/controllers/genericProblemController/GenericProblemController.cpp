@@ -6,7 +6,6 @@ using namespace std;
 void GenericProblemController::loadFromFile()
 {
 	string userInput = "";
-	int currentData;
 	string line = "";
 
 	cout << "Podaj nazwê pliku: ";
@@ -33,7 +32,7 @@ void GenericProblemController::loadFromFile()
 	}
 }
 
-void GenericProblemController::parseEdgeString(string line)
+void GenericProblemController::parseEdgeString(const string &line)
 {
 	istringstream iss(line);
 	int startPoint, endpoint, edgeValue;

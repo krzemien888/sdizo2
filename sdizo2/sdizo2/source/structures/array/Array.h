@@ -14,7 +14,7 @@ public:
 
 	Array(int size)
 	{
-		data = new T*[size];
+		data = new T[size];
 		allocatedSize = size;
 		isCheap = false;
 		currSize = 0;
@@ -29,7 +29,7 @@ public:
 	~Array() { clearStructure(); };
 
 
-	void printData() const{
+	void printData() const {
 		if (!isEmpty())
 			for (int index = 0; index < this->currSize; index++)
 			{
@@ -47,9 +47,9 @@ public:
 	void addElement(const int index, const T &value) {
 		if (isEmpty() && index == 0)
 		{
-			data = new T*[1];
+			data = new T[1];
 			allocatedSize = 1;
-			data[index] = new T(value);
+			data[index] = T(value);
 			++currSize;
 		}
 		else if (index >= 0 && index <= currSize)
@@ -60,7 +60,7 @@ public:
 				else
 					realocateByStep();
 			moveElementsRight(index);
-			data[index] = new T(value);
+			data[index] = T(value);
 			++currSize;
 		}
 		else
@@ -96,8 +96,6 @@ public:
 	void clearStructure() {
 		if (!(data == nullptr))
 		{
-			for (auto i = 0; i < allocatedSize; i++)
-				delete data[i];
 			delete[] data;
 			currSize = 0;
 			allocatedSize = 0;
@@ -112,10 +110,10 @@ public:
 			return;
 		}
 
-		T** newData = new T*[newSize];
+		T* newData = new T[newSize];
 		int moveDataToIndex = (newSize > currSize) ? currSize : newSize;
 		for (int index = 0; index < moveDataToIndex; index++)
-			newData[index] = new T(*(data[index]));
+			newData[index] = T(data[index]);
 		clearStructure();
 		data = newData;
 		allocatedSize = newSize;
@@ -135,7 +133,7 @@ public:
 		return currSize;
 	};
 
-	bool isEmpty() const 
+	bool isEmpty() const
 	{
 		return (currSize == 0);
 	};
@@ -144,18 +142,18 @@ public:
 	{
 		if (index >= currSize)
 			throw std::invalid_argument("Out of Array range");
-		return *(data[index]);
+		return data[index];
 	};
 
 	void setValue(int index, const T &value) {
 		if (index >= currSize)
 			throw std::invalid_argument("Out of Array range");
-		*(data[index]) = value;
+		data[index] = value;
 	};
 	void swap(int b, int a) {
-		T tmp = *(data[b]);
-		*(data[b]) = *(data[a]);
-		*(data[a]) = *(tmp);
+		T tmp = data[b];
+		data[b] = data[a];
+		data[a] = tmp;
 	};
 
 	T operator[](int index) const {
@@ -164,7 +162,7 @@ public:
 
 	T* getPtr(int index) const
 	{
-		return data[index];
+		return &(data[index]);
 	};
 
 	int getAllocatedSize() const
@@ -184,18 +182,18 @@ public:
 	}
 
 private:
-	T** data = nullptr;
+	T* data = nullptr;
 	int currSize = 0;
 	int allocatedSize = 0;
 	int realocationStep = 1;
 
 	void moveElementsRight(int index) {
 		for (int i = currSize - 1; i > index; --i)
-			*(data[i]) = *(data[i - 1]);
+			data[i] = data[i - 1];
 	};
 	void moveElementsLeft(int index) {
 		for (int i = index; i < currSize - 1; ++i)
-			*(data[i]) = *(data[i + 1]);
+			data[i] = data[i + 1];
 	};
 
 	bool isCheap;
@@ -207,7 +205,7 @@ protected:
 };
 
 template<class T>
-std::ostream& operator<<(std::ostream& str, const Array<T>& s) 
+std::ostream& operator<<(std::ostream& str, const Array<T>& s)
 {
 	for (int i = 0; i < s.getSize(); i++)
 	{

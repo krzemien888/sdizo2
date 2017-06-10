@@ -13,12 +13,14 @@ public:
 	List(const List<T> &l);
 
 
+
 	void printData();
 	
 	void pushBack(const T value);
 	void pushFront(T value);
 	void addElement(int index, T value);
 	void addElement(T value);
+	T popFrontElement();
 	void removeElement(T value);
 	void clearStructure();
 	bool findValue(T toFind);
@@ -138,7 +140,7 @@ T List<T>::getValue(int index) const
 		return tail->data;
 
 	typename List<T>::Node* output = head.get();
-	for (auto i = 0; i <= index; i++)
+	for (auto i = 0; i < index; i++)
 		output = output->next.get();
 	return output->data;
 }
@@ -252,6 +254,31 @@ template<class T>
 void List<T>::addElement(T value)
 {
 	pushBack(value);
+}
+
+template<class T>
+T List<T>::popFrontElement()
+{
+	T output = getValue(0);
+	auto toDelete = head;
+	if (toDelete != nullptr)
+	{
+		if (toDelete->prev == nullptr)
+			head = toDelete->next;
+		else
+			toDelete->prev->next = toDelete->next;
+
+		if (toDelete->next == nullptr)
+			tail = toDelete->prev;
+		else
+			toDelete->next->prev = toDelete->prev;
+
+		toDelete->prev.reset();
+		toDelete->next.reset();
+	}
+	--size;
+
+	return output;
 }
 
 template<class T>

@@ -25,7 +25,11 @@ void Matrix::resize(int newSize)
 
 	int** newData = new int*[newSize];
 	for (int i = 0; i < newSize; i++)
+	{
 		newData[i] = new int[newSize];
+		for (int j = 0; j < newSize; j++)
+			newData[i][j] = 0;
+	}
 
 	int copyMaxIndex = (newSize > getSize()) ? getSize() : newSize;
 
@@ -78,4 +82,5 @@ void Matrix::clearData()
 		delete[] m_data;
 		m_data = nullptr;
 	}
+	m_size = 0;
 }

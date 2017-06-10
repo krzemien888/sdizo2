@@ -10,10 +10,12 @@ public:
 	~Edge();
 	Edge::Edge() = default;
 	Edge::Edge(int value, Point a, Point b);
+	Edge::Edge(int value, Point a, Point b, bool isDirected);
+	Edge::Edge(const Edge &e);
 	
 	int getValue() const;
-	Point* getStart() const;
-	Point* getEnd() const;
+	Point getStart() const;
+	Point getEnd() const;
 	
 	void setStart(const Point &a);
 	void setEnd(const Point &b);
@@ -35,6 +37,6 @@ public:
 private:
 	bool m_directed = false;
 	int m_value = 0;
-	Point* m_startPoint = nullptr;
-	Point* m_endPoint = nullptr;
+	Point m_startPoint;
+	Point m_endPoint;
 };

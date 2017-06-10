@@ -2,6 +2,10 @@
 #include "AppController.h"
 #include "views\app\appMenu.h"
 
+#include "controllers\sppController\sppController.h"
+#include "controllers\mstController\mstController.h"
+#include "controllers\testControllers\genericTestController\genericTestController.h"
+
 using namespace std;
 
 AppController::AppController() : GenericController()
@@ -20,9 +24,15 @@ void AppController::parseInput(const std::string &input)
 			this->Stop();
 			break;
 		case 1:
-			//controller = std::make_unique<>();
-			//controller->Run();
-
+			controller = std::make_unique<mstController>();
+			controller->Run();
+			break;
+		case 2:
+			controller = std::make_unique<sppController>();
+			controller->Run();
+			break;
+		case 3:
+			
 			break;
 		default:
 			throw new std::invalid_argument("Unknown controller input");

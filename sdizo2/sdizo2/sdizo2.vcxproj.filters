@@ -72,6 +72,21 @@
     <ClInclude Include="source\views\spp\sppMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\controllers\mstController\mstController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\sppController\sppController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\alghoritms\IAlghoritm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\testControllers\genericTestController\genericTestController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\alghoritms\DjikstraAlghoritm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -111,6 +126,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\views\spp\sppMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\mstController\mstController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\sppController\sppController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\testControllers\genericTestController\genericTestController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\utilities\graph\Graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\alghoritms\DjikstraAlghoritm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

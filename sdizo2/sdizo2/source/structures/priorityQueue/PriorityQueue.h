@@ -16,14 +16,14 @@ public:
 	virtual void clearStructure();
 	virtual bool findValue(T &value);
 	virtual T popElement();
+	virtual T popElement(const int index);
 	virtual int getSize();
 	virtual void printData();
+	int getIndex(const T&value);
 
 private:
 	virtual void fixUp();
 	virtual void fixDown(int index);
-
-	int m_size;
 	
 protected:
 	std::unique_ptr<Array<T>> array;
@@ -35,7 +35,6 @@ template<class T>
 PriorityQueue<T>::PriorityQueue()
 {
 	array = make_unique<Array<T>>(20);
-	m_size = 0;
 };
 
 
@@ -45,7 +44,6 @@ template<class T>
 PriorityQueue<T>::PriorityQueue(int size)
 {
 	array = make_unique<Array<T>>(size * 2);
-	m_size = 0;
 };
 
 template<class T>
@@ -53,14 +51,12 @@ void PriorityQueue<T>::addElement(T &elem)
 {
 	array->pushBack(elem);
 	fixUp();
-	++m_size;
 };
 
 template<class T>
 void PriorityQueue<T>::clearStructure()
 {
 	array->clearStructure();
-	m_size = 0;
 };
 
 template<class T>
@@ -75,13 +71,27 @@ bool PriorityQueue<T>::findValue(T &value)
 template<class T>
 T PriorityQueue<T>::popElement()
 {
-	if (m_size != 0)
+	if (array->getSize() != 0)
 	{
 		T output = array->getValue(0);
 		array->swap(0, array->getSize() - 1);
 		array->removeElement(array->getSize() - 1);
 		fixDown(0);
-		--m_size;
+		return output;
+	}
+	else
+		throw new logic_error("Queue is empty!");
+}
+template<class T>
+T PriorityQueue<T>::popElement(const int index)
+{
+	if (array->getSize() != 0)
+	{
+		T output = array->getValue(index);
+		array->swap(index, array->getSize() - 1);
+		array->removeElement(array->getSize() - 1);
+		if(index < array->getSize())
+			fixDown(index);
 		return output;
 	}
 	else
@@ -91,13 +101,21 @@ T PriorityQueue<T>::popElement()
 template<class T>
 int PriorityQueue<T>::getSize()
 {
-	return m_size;
+	return array->getSize();
 };
 
 template<class T>
 void PriorityQueue<T>::printData()
 {
 	printNode(string(""), string(""), 0);
+}
+template<class T>
+int PriorityQueue<T>::getIndex(const T & value)
+{
+	for (int i = 0; i < getSize(); i++)
+		if (array->getValue(i) == value)
+			return i;
+	return -1;
 };
 
 template<class T>

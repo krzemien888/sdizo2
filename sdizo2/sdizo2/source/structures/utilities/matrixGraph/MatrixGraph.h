@@ -9,9 +9,12 @@ public:
 	MatrixGraph();
 
 	void clear();
-	void addEdge(Edge e);
-	void addPoint(Point p);
+	void addEdge(const Edge &e) override;
+	void addPoint(const Point &p) override;
+	shared_ptr<Edge> getEdge(int a, int b) override;
+	List<Edge> getNeighbours(int p) override;
 	void print();
+	void resize(int newSize);
 
 	virtual ~MatrixGraph();
 

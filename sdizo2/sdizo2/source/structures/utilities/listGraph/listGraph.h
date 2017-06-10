@@ -1,20 +1,24 @@
 #pragma once
 
+#include "structures\utilities\graph\Graph.h"
 #include "structures\array\Array.h"
 #include "structures\utilities\edge\Edge.h"
 #include "structures\utilities\point\Point.h"
 
 class ListGraph
+	: Graph
 {
 public:
 	ListGraph();
 
 	void clear();
-	void addEdge(const Edge &e);
-	void addPoint(const Point &p);
+	void addEdge(const Edge &e) override;
+	void addPoint(const Point &p) override;
+	shared_ptr<Edge> getEdge(int a, int b) override;
+	List<Edge> getNeighbours(int p) override;
 	int getSize();
 	void print();
-
+	void resize(int newSize);
 	virtual ~ListGraph();
 
 	class Node {

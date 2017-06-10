@@ -143,6 +143,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\alghoritms\DjikstraAlghoritm.h" />
+    <ClInclude Include="source\alghoritms\IAlghoritm.h" />
+    <ClInclude Include="source\controllers\mstController\mstController.h" />
+    <ClInclude Include="source\controllers\testControllers\genericTestController\genericTestController.h" />
     <ClInclude Include="source\views\mst\mstMenu.h" />
     <ClInclude Include="source\structures\utilities\listGraph\listGraph.h" />
     <ClInclude Include="source\structures\matrix\Matrix.h" />
@@ -163,8 +167,13 @@
     <ClInclude Include="source\views\app\appMenu.h" />
     <ClInclude Include="source\views\genericView\GenericView.h" />
     <ClInclude Include="source\views\spp\sppMenu.h" />
+    <ClInclude Include="source\controllers\sppController\sppController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\alghoritms\DjikstraAlghoritm.cpp" />
+    <ClCompile Include="source\controllers\mstController\mstController.cpp" />
+    <ClCompile Include="source\controllers\testControllers\genericTestController\genericTestController.cpp" />
+    <ClCompile Include="source\structures\utilities\graph\Graph.cpp" />
     <ClCompile Include="source\views\mst\mstMenu.cpp" />
     <ClCompile Include="source\structures\utilities\listGraph\listGraph.cpp" />
     <ClCompile Include="source\structures\matrix\Matrix.cpp" />
@@ -183,6 +192,7 @@
     <ClCompile Include="source\structures\utilities\point\Point.cpp" />
     <ClCompile Include="source\views\app\appMenu.cpp" />
     <ClCompile Include="source\views\spp\sppMenu.cpp" />
+    <ClCompile Include="source\controllers\sppController\sppController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
