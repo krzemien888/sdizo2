@@ -44,8 +44,19 @@ void Matrix::resize(int newSize)
 
 void Matrix::print()
 {
+	cout << "\t ";
+	for (int x = 0; x < getSize(); x++)
+		cout << x << " ";
+	cout << endl;
+
+	cout << "\t";
+	for (int x = 0; x < getSize(); x++)
+		cout << "--";
+	cout << endl;
+
 	for (int x = 0; x < getSize(); x++)
 	{
+		cout << x << "\t" << "|";
 		for (int y = 0; y < getSize(); y++)
 			cout << getValue(x, y) << ' ';
 		cout << endl;

@@ -96,7 +96,6 @@ List<Edge> ListGraph::getNeighbours(int p)
 		output.pushBack(*(curr->data));
 		curr = curr->next;
 	}
-	output.printData();
 	return output;
 }
 
@@ -112,8 +111,11 @@ void ListGraph::print()
 		auto currNode = &(m_data[i]);
 		while (currNode != nullptr)
 		{
-			if(currNode == &(m_data[i]))
+			if (currNode == &(m_data[i]))
+			{
 				cout << currNode->data->getStart().getName() << " ";
+				cout << " | ";
+			}
 			else
 				cout << currNode->data->getEnd().getName() << " ";
 			currNode = currNode->next;

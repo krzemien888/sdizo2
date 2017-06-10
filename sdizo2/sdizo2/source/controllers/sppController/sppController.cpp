@@ -30,12 +30,11 @@ void sppController::parseInput(const std::string & input)
 		break;
 	case 1:
 		loadFromFile();
-		m_list.print();
-		system("pause");
 		break;
 	case 2:
 		alghoritm = new DjikstraAlghoritm;
 		alghoritm->setParameters(startPoint, 0);
+
 		cout << "Dla macierzy: " << endl;
 		alghoritm->prepare(&m_matrix);
 		alghoritm->apply(&m_matrix);
