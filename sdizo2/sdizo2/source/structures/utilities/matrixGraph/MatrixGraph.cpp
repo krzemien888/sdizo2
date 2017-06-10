@@ -63,6 +63,7 @@ List<Edge> MatrixGraph::getNeighbours(int p)
 	return output;
 }
 
+
 void MatrixGraph::print()
 {
 	m_matrix.print();

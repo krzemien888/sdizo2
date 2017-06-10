@@ -14,6 +14,7 @@ public:
 	virtual void generate(int density, int points);
 	virtual shared_ptr<Edge> getEdge(int a, int b) = 0;
 	virtual List<Edge> getNeighbours(int a) = 0;
+	virtual List<Edge> getEdges();
 
 	virtual void clear() = 0;
 
