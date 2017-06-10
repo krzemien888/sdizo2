@@ -16,6 +16,11 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="dane_mst2.txt" />
+    <Text Include="dane_droga.txt" />
+    <Text Include="dane_droga_bf.txt" />
+    <Text Include="dane_flow.txt" />
+    <Text Include="dane_mst1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\targetver.h">
@@ -87,6 +92,9 @@
     <ClInclude Include="source\alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\alghoritms\bfAlghoritm\bfAlghoritm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -141,6 +149,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\alghoritms\bfAlghoritm\bfAlghoritm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

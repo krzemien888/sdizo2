@@ -140,9 +140,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="dane_droga.txt" />
+    <Text Include="dane_droga_bf.txt" />
+    <Text Include="dane_flow.txt" />
+    <Text Include="dane_mst1.txt" />
+    <Text Include="dane_mst2.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\alghoritms\bfAlghoritm\bfAlghoritm.h" />
     <ClInclude Include="source\alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.h" />
     <ClInclude Include="source\alghoritms\IAlghoritm.h" />
     <ClInclude Include="source\controllers\mstController\mstController.h" />
@@ -170,6 +176,7 @@
     <ClInclude Include="source\controllers\sppController\sppController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\alghoritms\bfAlghoritm\bfAlghoritm.cpp" />
     <ClCompile Include="source\alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.cpp" />
     <ClCompile Include="source\controllers\mstController\mstController.cpp" />
     <ClCompile Include="source\controllers\testControllers\genericTestController\genericTestController.cpp" />
