@@ -84,7 +84,7 @@
     <ClInclude Include="source\controllers\testControllers\genericTestController\genericTestController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\alghoritms\DjikstraAlghoritm.h">
+    <ClInclude Include="source\alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -140,7 +140,7 @@
     <ClCompile Include="source\structures\utilities\graph\Graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\alghoritms\DjikstraAlghoritm.cpp">
+    <ClCompile Include="source\alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "sppController.h"
-#include "alghoritms\DjikstraAlghoritm.h"
+#include "alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.h"
 #include "views\spp\sppMenu.h"
 
 using namespace std;
