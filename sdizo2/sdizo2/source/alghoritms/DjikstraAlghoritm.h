@@ -3,6 +3,7 @@
 #include "structures\utilities\listGraph\listGraph.h"
 #include "structures\utilities\matrixGraph\MatrixGraph.h"
 #include "structures\priorityQueue\PriorityQueue.h"
+#include "structures\array\Array.h"
 
 #undef max
 
@@ -36,15 +37,18 @@ class DjikstraAlghoritm :
 {
 private:
 	int startPoint = 0;
-	std::shared_ptr<ListGraph> m_outputListGraph;
-	std::shared_ptr<MatrixGraph> m_outputMatrixGraph;
+	int currentGraphSize = 0;
 	std::shared_ptr<PriorityQueue<pointValueStructure>> queue;
+	int* m_pathArray = nullptr;
+	int* m_distanceArray = nullptr;
 public:
 	DjikstraAlghoritm();
+	~DjikstraAlghoritm();
 
-	virtual void apply(Graph* graph);
+	void prepare(Graph* graph) override;
+	void apply(Graph* graph) override;
 	void setParameters(int newStartPoint, int = 0);
-	virtual void printResult();
+	void printResult();
 };
 
 

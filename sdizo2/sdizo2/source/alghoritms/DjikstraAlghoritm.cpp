@@ -6,28 +6,30 @@ using namespace std;
 
 DjikstraAlghoritm::DjikstraAlghoritm()
 {
-	switch (outputSetting)
-	{
-	case AlghoritmOutputSetting::list:
-		m_outputListGraph = make_shared<ListGraph>();
-		break;
-	case AlghoritmOutputSetting::matrix:
-		m_outputMatrixGraph = make_shared<MatrixGraph>();
-		break;
-	default:
-		cout << "Nie wybrano formy wynikowego grafu" << endl;
-		break;
-	}
 	queue = make_shared<PriorityQueue<pointValueStructure>>();
-
 }
 
-void DjikstraAlghoritm::apply(Graph * graph)
+DjikstraAlghoritm::~DjikstraAlghoritm()
+{
+	if (m_pathArray != nullptr)
+		delete[] m_pathArray;
+
+	if (m_distanceArray != nullptr)
+		delete[] m_distanceArray;
+}
+
+void DjikstraAlghoritm::prepare(Graph * graph)
 {
 	queue->clearStructure();
-	int* distanceArray = new int[graph->getAmountPoints()];
-	int* pathArray = new int[graph->getAmountPoints()];
-	
+
+	if (m_pathArray != nullptr)
+		delete[] m_pathArray;
+
+	if (m_distanceArray != nullptr)
+		delete[] m_distanceArray;
+
+	m_pathArray = new int[graph->getAmountPoints()];
+	m_distanceArray = new int[graph->getAmountPoints()];
 
 	// Set beginning values
 	for (int i = 0; i < graph->getAmountPoints(); i++)
@@ -37,15 +39,19 @@ void DjikstraAlghoritm::apply(Graph * graph)
 			pointStructure.value = 0;
 
 		pointStructure.point = i;
-		distanceArray[i] = std::numeric_limits<int>::max();
-		pathArray[i] = -1;
+		m_distanceArray[i] = std::numeric_limits<int>::max();
+		m_pathArray[i] =  -1;
 
 		queue->addElement(pointStructure);
 	}
-	
-	pathArray[startPoint] = -1;
-	distanceArray[startPoint] = 0 ;
+	m_pathArray[startPoint] = -1;
+	m_distanceArray[startPoint] = 0;
 
+	currentGraphSize = graph->getAmountPoints();
+}
+
+void DjikstraAlghoritm::apply(Graph * graph)
+{
 	pointValueStructure currPointStruct;
 	while (queue->getSize() != 0)
 	{
@@ -66,21 +72,13 @@ void DjikstraAlghoritm::apply(Graph * graph)
 			if (neighbourStruct.value > currNeighbour.getValue() + currPointStruct.value || neighbourStruct.value == numeric_limits<int>::max())
 			{
 				neighbourStruct.value = currNeighbour.getValue() + currPointStruct.value;
-				pathArray[currNeighbour.getEnd().getName()] = currPointStruct.point;
+				m_pathArray[currNeighbour.getEnd().getName()] = currPointStruct.point;
 			}
 
 			queue->addElement(neighbourStruct);
 		}
-		distanceArray[currPointStruct.point] = currPointStruct.value;
+		m_distanceArray[currPointStruct.point] = currPointStruct.value;
 	}
-
-	for (int i = 0; i < graph->getAmountPoints(); i++)
-		cout << i << "-" << distanceArray[i] << endl;
-	for (int i = 0; i < graph->getAmountPoints(); i++)
-		cout << i << "-" << pathArray[i] << endl;
-	
-	delete[] distanceArray;
-	delete[] pathArray;
 }
 
 void DjikstraAlghoritm::setParameters(int newStartPoint, int)
@@ -90,17 +88,22 @@ void DjikstraAlghoritm::setParameters(int newStartPoint, int)
 
 void DjikstraAlghoritm::printResult()
 {
-	switch (outputSetting)
+	List<int> displayer;
+
+	cout << "Punkt startowy: " << startPoint << endl;
+	cout << "Cel\tDystans\tTor" << endl;
+	for (int i = 0; i < currentGraphSize; i++)
 	{
-	case AlghoritmOutputSetting::list:
-		m_outputListGraph->print();
-		break;
-	case AlghoritmOutputSetting::matrix:
-		m_outputMatrixGraph->print();
-		break;
-	default:
-		cout << "Nie wybrano formy wynikowego grafu" << endl;
-		break;
+		cout << i << "\t" << m_distanceArray[i] << "\t";
+		auto pathFinder = i;
+		while (pathFinder != -1)
+		{
+			displayer.pushFront(pathFinder);
+			pathFinder = m_pathArray[pathFinder];
+		}
+		while (displayer.getSize() != 0)
+			cout << displayer.popFrontElement() << " ";
+		cout << endl;
 	}
 }
 

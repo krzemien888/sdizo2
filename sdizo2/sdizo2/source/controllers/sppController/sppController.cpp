@@ -34,14 +34,20 @@ void sppController::parseInput(const std::string & input)
 	case 2:
 		alghoritm = new DjikstraAlghoritm;
 		alghoritm->setParameters(startPoint, 0);
+		alghoritm->prepare(&m_matrix);
 		alghoritm->apply(&m_matrix);
+		alghoritm->printResult();
+		system("pause");
 		break;
 	case 3:
 		
 		break;
 	case 4:
+		cout << "Lista s¹siadów: " << endl;
 		m_list.print();
-		//m_matrix.print();
+		cout << endl;
+		cout << "Macierza s¹siedztwa: " << endl;
+		m_matrix.print();
 		cout << endl;
 		system("pause");
 		break;

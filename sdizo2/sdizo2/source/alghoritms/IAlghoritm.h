@@ -17,5 +17,6 @@ public:
 	virtual void printResult() = 0;
 	virtual void apply(Graph* graph) = 0;
 	virtual void setParameters(int, int) = 0;
+	virtual void prepare(Graph* graph) = 0;
 };
 
