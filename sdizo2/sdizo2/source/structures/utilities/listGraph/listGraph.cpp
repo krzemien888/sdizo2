@@ -13,6 +13,7 @@ void ListGraph::clear()
 	for (int i = 0; i < getSize(); i++)
 		m_data[i].clearList();
 	delete[] m_data;
+	m_data = nullptr;
 	m_size = 0;
 	m_amountEdges = 0;
 	m_amountPoints = 0;
@@ -26,9 +27,7 @@ void ListGraph::addEdge(const Edge &e)
 		lastNode = lastNode->next;
 	
 	lastNode->next = new Node();
-	lastNode->next->data = new Edge();
-	lastNode->next->data->setStart(e.getStart());
-	lastNode->next->data->setEnd(e.getEnd());
+	lastNode->next->data = new Edge(e);
 	lastNode->next->prev = lastNode;
 	if (!e.isDirected())
 	{
@@ -97,6 +96,7 @@ List<Edge> ListGraph::getNeighbours(int p)
 		output.pushBack(*(curr->data));
 		curr = curr->next;
 	}
+	output.printData();
 	return output;
 }
 

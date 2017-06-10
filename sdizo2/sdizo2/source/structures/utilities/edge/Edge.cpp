@@ -54,6 +54,11 @@ void Edge::setEnd(const Point & b)
 
 }
 
+void Edge::setValue(const int & value)
+{
+	m_value = value;
+}
+
 bool Edge::operator==(const Edge & e)
 {
 	return (m_startPoint == e.getStart() 

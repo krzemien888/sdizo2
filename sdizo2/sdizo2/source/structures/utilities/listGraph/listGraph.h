@@ -6,7 +6,7 @@
 #include "structures\utilities\point\Point.h"
 
 class ListGraph
-	: Graph
+	: public Graph
 {
 public:
 	ListGraph();

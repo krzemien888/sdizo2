@@ -19,6 +19,7 @@ public:
 	
 	void setStart(const Point &a);
 	void setEnd(const Point &b);
+	void setValue(const int &value);
 
 	bool operator==(const Edge& e);
 	bool operator<(const Edge& e);
