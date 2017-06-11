@@ -150,6 +150,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\structures\utilities\disjoinSet\DisjoinSet.h" />
     <ClInclude Include="source\alghoritms\kruskalAlghoritm\KruskalAlghoiritm.h" />
     <ClInclude Include="source\alghoritms\primAlghoritm\PrimAlghoritm.h" />
     <ClInclude Include="source\alghoritms\bfAlghoritm\bfAlghoritm.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="source\controllers\sppController\sppController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\structures\utilities\disjoinSet\DisjoinSet.cpp" />
     <ClCompile Include="source\alghoritms\kruskalAlghoritm\KruskalAlghoiritm.cpp" />
     <ClCompile Include="source\alghoritms\primAlghoritm\PrimAlghoritm.cpp" />
     <ClCompile Include="source\alghoritms\bfAlghoritm\bfAlghoritm.cpp" />

@@ -4,11 +4,6 @@
 #include "stdafx.h"
 #include "controllers\appController\AppController.h"
 
-#include "structures\utilities\matrixGraph\MatrixGraph.h"
-#include "structures\utilities\ListGraph\ListGraph.h"
-#include "structures\array\Array.h"
-
-
 int main()
 {
 	AppController app;

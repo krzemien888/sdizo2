@@ -15,8 +15,9 @@ void PrimAlghoritm::printResult()
 	for (int i = 0; i < m_currentGraphSize; i++)
 		graphSum += m_resultArray[i].getValue();
 
-	cout << "Graf spinaj¹cy: " << endl;
-	m_outputGraph->print();
+	cout << "Lista krawêdzi: " << endl;
+	for (int i = 1; i < m_currentGraphSize; i++)
+		cout << m_resultArray[i] << endl;
 	cout << "Waga grafu: " << graphSum << endl;
 }
 

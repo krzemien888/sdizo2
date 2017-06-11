@@ -103,6 +103,9 @@
     <ClInclude Include="source\alghoritms\primAlghoritm\PrimAlghoritm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\structures\utilities\disjoinSet\DisjoinSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -166,6 +169,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\alghoritms\primAlghoritm\PrimAlghoritm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\utilities\disjoinSet\DisjoinSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
