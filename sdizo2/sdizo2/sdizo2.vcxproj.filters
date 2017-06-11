@@ -96,6 +96,12 @@
     <ClInclude Include="source\alghoritms\bfAlghoritm\bfAlghoritm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\alghoritms\kruskalAlghoritm\KruskalAlghoiritm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\alghoritms\primAlghoritm\PrimAlghoritm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -153,6 +159,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\alghoritms\bfAlghoritm\bfAlghoritm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\alghoritms\kruskalAlghoritm\KruskalAlghoiritm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\alghoritms\primAlghoritm\PrimAlghoritm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRIMALGHORITM.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

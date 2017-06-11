@@ -66,7 +66,7 @@ void sppController::parseInput(const std::string & input)
 		cout << "Lista s¹siadów: " << endl;
 		m_list.print();
 		cout << endl;
-		cout << "Macierza s¹siedztwa: " << endl;
+		cout << "Macierz s¹siedztwa: " << endl;
 		m_matrix.print();
 		cout << endl;
 		system("pause");

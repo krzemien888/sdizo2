@@ -4,12 +4,16 @@ class mstController :
 	public GenericProblemController
 {
 public:
-	mstController() = default;
+	mstController();
 	~mstController() = default;
 
 	void handleAdditionalParameters(const std::string&) override;
 	void parseEdgeString(const std::string&) override;
 	void parseInput(const std::string & input) override;
 	void init() override;
+
+private:
+	int edgeCount = 0;
+	int pointCount = 0;
 };
 
