@@ -61,8 +61,23 @@ void bfAlghoritm::setParameters(int newStartPoint, int)
 
 void bfAlghoritm::printResult()
 {
+	List<int> displayer;
+
+	cout << "Punkt startowy: " << m_startPoint << endl;
+	cout << "Cel\tDystans\tTor" << endl;
 	for (int i = 0; i < m_currentGraphSize; i++)
-		cout << m_array[i] << endl;
+	{
+		cout << i << "\t" << m_array[i].value << "\t";
+		auto pathFinder = i;
+		while (pathFinder != -1)
+		{
+			displayer.pushFront(pathFinder);
+			pathFinder = m_array[pathFinder].parentPoint;
+		}
+		while (displayer.getSize() != 0)
+			cout << displayer.popFrontElement() << " ";
+		cout << endl;
+	}
 }
 
 bfAlghoritm::queueStructure::queueStructure(int apoint)
