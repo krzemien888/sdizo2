@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="bfTest.txt" />
     <Text Include="dane_droga.txt" />
     <Text Include="dane_droga_bf.txt" />
     <Text Include="dane_flow.txt" />

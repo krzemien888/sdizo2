@@ -1,3 +1,8 @@
+#if defined(max);
+	#undef max;
+	#else
+#endif
+
 #include "stdafx.h"
 #include "AppController.h"
 #include "views\app\appMenu.h"
@@ -5,6 +10,8 @@
 #include "controllers\sppController\sppController.h"
 #include "controllers\mstController\mstController.h"
 #include "controllers\testControllers\genericTestController\genericTestController.h"
+
+
 
 using namespace std;
 

@@ -75,6 +75,10 @@ void sppController::parseInput(const std::string & input)
 		throw std::invalid_argument("Unknown controller input");
 		break;
 	}
+
+	if (alghoritm != nullptr)
+		delete alghoritm;
+
 	system("cls");
 }
 

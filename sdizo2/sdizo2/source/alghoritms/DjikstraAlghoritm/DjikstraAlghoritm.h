@@ -5,7 +5,6 @@
 #include "structures\priorityQueue\PriorityQueue.h"
 #include "structures\array\Array.h"
 
-#undef max
 
 struct pointValueStructure
 {

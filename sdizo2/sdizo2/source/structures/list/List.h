@@ -26,7 +26,6 @@ public:
 	bool findValue(T toFind);
 	T getValue(int index) const;
 	T* getIterator(int index);
-	typename List<T>::Node* getNodePtr(int index);
 
 	int getSize() const;
 	bool operator==(const List<T>& l);
@@ -36,7 +35,6 @@ public:
 	bool isInlineDisplayed();
 
 
-
 	class Node {
 	public:
 		Node(const T &value) : data(value) {};
@@ -44,6 +42,8 @@ public:
 		std::shared_ptr<Node> prev = nullptr;
 		const T	data;
 	};
+	typename List<T>::Node* getNodePtr(int index);
+
 private:
 	
 
@@ -52,6 +52,8 @@ private:
 	bool isEmpty();
 	int size = 0;
 	bool displayInline = true;
+
+
 };
 
 using namespace std;
@@ -372,5 +374,5 @@ typename List<T>::Node* List<T>::getNodePtr(int index)
 	for (int i = 0; i < index && currNode != nullptr; ++i)
 		currNode = currNode->next;
 
-	return currNode;
+	return currNode.get();
 }

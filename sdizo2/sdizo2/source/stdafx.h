@@ -21,4 +21,7 @@
 #include <cstddef>
 
 
+#undef max
+
+
 // TODO: reference additional headers your program requires here

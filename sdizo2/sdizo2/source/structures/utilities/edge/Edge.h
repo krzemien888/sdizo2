@@ -15,7 +15,9 @@ public:
 	
 	int getValue() const;
 	Point getStart() const;
+	int getStartName() const;
 	Point getEnd() const;
+	int getEndName() const;
 	
 	void setStart(const Point &a);
 	void setEnd(const Point &b);

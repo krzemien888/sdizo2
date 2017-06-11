@@ -21,6 +21,7 @@
     <Text Include="dane_droga_bf.txt" />
     <Text Include="dane_flow.txt" />
     <Text Include="dane_mst1.txt" />
+    <Text Include="bfTest.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\targetver.h">

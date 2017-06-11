@@ -38,9 +38,19 @@ Point Edge::getStart() const
 	return m_startPoint;
 }
 
+int Edge::getStartName() const
+{
+	return m_startPoint.getName();
+}
+
 Point Edge::getEnd() const
 {
 	return m_endPoint;
+}
+
+int Edge::getEndName() const
+{
+	return m_endPoint.getName();
 }
 
 void Edge::setStart(const Point & a)

@@ -1,11 +1,11 @@
 #pragma once
+
 #include "alghoritms\IAlghoritm.h"
 
 #include "structures\utilities\listGraph\listGraph.h"
 #include "structures\utilities\matrixGraph\MatrixGraph.h"
 #include "structures\priorityQueue\PriorityQueue.h"
 
-#undef max;
 
 
 class bfAlghoritm :
@@ -19,6 +19,7 @@ struct queueStructure {
 	int parentPoint = -1;
 	int value = std::numeric_limits<int>::max();
 
+	queueStructure() = default;
 	queueStructure(int point);
 	queueStructure(int point, int parentPoint, int value);
 	bool operator==(const queueStructure& e);
@@ -32,7 +33,8 @@ struct queueStructure {
 
 };
 
-	bfAlghoritm();
+	bfAlghoritm() = default;
+	~bfAlghoritm();
 	void prepare(Graph* graph) override;
 	void apply(Graph* graph) override;
 	void setParameters(int newStartPoint, int = 0);
@@ -43,7 +45,7 @@ private:
 
 	int m_startPoint = 0;
 	int m_currentGraphSize = 0;
-	std::unique_ptr<PriorityQueue<queueStructure>> m_queue;
+	queueStructure* m_array = nullptr;
 	List<Edge> m_primalEdgeList;
 };
 

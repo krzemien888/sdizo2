@@ -1,29 +1,57 @@
 #include "stdafx.h"
 #include "bfAlghoritm.h"
 
-bfAlghoritm::bfAlghoritm()
+using namespace std;
+
+bfAlghoritm::~bfAlghoritm()
 {
-	m_queue = make_unique<PriorityQueue<queueStructure>>();
+	if (m_array != nullptr)
+		delete[] m_array;
 }
 
 void bfAlghoritm::prepare(Graph * graph)
 {
-	m_queue->clearStructure();
+	m_currentGraphSize = graph->getAmountPoints();
+
+	if (m_array != nullptr)
+		delete[] m_array;
+	m_array = new queueStructure[m_currentGraphSize];
 
 	m_primalEdgeList = graph->getEdges();
-	m_currentGraphSize = graph->getAmountPoints();
 
 	for (int i = 0; i < m_currentGraphSize; i++)
 	{
 		if(i == m_startPoint)
-			m_queue->addElement(queueStructure(i, -1, 0));
+			m_array[i] = queueStructure(i, -1, 0);
 		else
-			m_queue->addElement(queueStructure(i));
+			m_array[i] = queueStructure(i);
 	}
 }
 
 void bfAlghoritm::apply(Graph * graph)
 {
+	for (int i = 0; i < m_currentGraphSize - 1; i++)
+	{
+		auto listIterator = m_primalEdgeList.getNodePtr(0);
+		while (listIterator != nullptr)
+		{
+			Edge currEdge = listIterator->data;
+			
+			if (m_array[currEdge.getStartName()].value == numeric_limits<int>::max() )
+			{
+				listIterator = listIterator->next.get();
+				continue;
+			}
+			
+			if(m_array[currEdge.getEndName()].value > m_array[currEdge.getStartName()].value + currEdge.getValue())
+			{
+				m_array[currEdge.getEndName()].value = m_array[currEdge.getStartName()].value + currEdge.getValue();
+				m_array[currEdge.getEndName()].parentPoint = currEdge.getStartName();
+			}
+
+			listIterator = listIterator->next.get();
+		}
+	}
 }
 
 void bfAlghoritm::setParameters(int newStartPoint, int)
@@ -33,6 +61,8 @@ void bfAlghoritm::setParameters(int newStartPoint, int)
 
 void bfAlghoritm::printResult()
 {
+	for (int i = 0; i < m_currentGraphSize; i++)
+		cout << m_array[i] << endl;
 }
 
 bfAlghoritm::queueStructure::queueStructure(int apoint)

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "DjikstraAlghoritm.h"
-#undef max
 
 using namespace std;
 
