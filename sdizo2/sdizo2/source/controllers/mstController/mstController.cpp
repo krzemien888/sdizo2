@@ -64,11 +64,15 @@ void mstController::parseInput(const std::string & input)
 		alghoritm = new KruskalAlghoiritm;
 
 		cout << "Dla macierzy: " << endl;
+		alghoritm->setOuputType(AlghoritmOutputSetting::matrix);
 		alghoritm->prepare(&m_matrix);
 		alghoritm->apply(&m_matrix);
 		alghoritm->printResult();
 
+		cout << endl;
+
 		cout << "Dla listy s¹siadów: " << endl;
+		alghoritm->setOuputType(AlghoritmOutputSetting::list);
 		alghoritm->prepare(&m_list);
 		alghoritm->apply(&m_list);
 		alghoritm->printResult();
@@ -78,11 +82,15 @@ void mstController::parseInput(const std::string & input)
 		alghoritm = new PrimAlghoritm;
 
 		cout << "Dla macierzy: " << endl;
+		alghoritm->setOuputType(AlghoritmOutputSetting::matrix);
 		alghoritm->prepare(&m_matrix);
 		alghoritm->apply(&m_matrix);
 		alghoritm->printResult();
 
+		cout << endl;
+
 		cout << "Dla listy s¹siadów: " << endl;
+		alghoritm->setOuputType(AlghoritmOutputSetting::list);
 		alghoritm->prepare(&m_list);
 		alghoritm->apply(&m_list);
 		alghoritm->printResult();

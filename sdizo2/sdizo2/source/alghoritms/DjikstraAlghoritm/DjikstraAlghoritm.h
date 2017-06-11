@@ -11,6 +11,7 @@ struct pointValueStructure
 public:
 	pointValueStructure() = default;
 	pointValueStructure(int aPoint) { point = aPoint; };
+	pointValueStructure(int aPoint, int aValue) { point = aPoint; value = aValue; };
 	int point = 0;
 	int value = std::numeric_limits<int>::max();
 

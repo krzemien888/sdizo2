@@ -14,7 +14,7 @@ public:
 	virtual void generate(int density, int points);
 	virtual shared_ptr<Edge> getEdge(int a, int b) = 0;
 	virtual List<Edge> getNeighbours(int a) = 0;
-	virtual List<Edge> getEdges();
+	virtual List<Edge> getEdges() = 0;
 
 	virtual void clear() = 0;
 
@@ -23,12 +23,14 @@ public:
 	virtual int getDensity();
 	virtual int getAmountEdges();
 
+
+	virtual void resize(int newSize) = 0;
 	virtual ~Graph() = default;
 
 protected:
 	int m_amountPoints = 0;
 	int m_amountEdges = 0;
-
+	bool isDirected = true;
 	Point getRandomPoint();
 };
 

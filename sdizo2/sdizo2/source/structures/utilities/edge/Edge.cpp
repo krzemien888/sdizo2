@@ -69,11 +69,10 @@ void Edge::setValue(const int & value)
 	m_value = value;
 }
 
-bool Edge::operator==(const Edge & e)
+bool Edge::operator==(const Edge & e) const
 {
 	return (m_startPoint == e.getStart() 
-		&& m_endPoint == e.getEnd()
-		&& m_value == e.getValue());
+		&& m_endPoint == e.getEnd());
 }
 
 bool Edge::operator<(const Edge & e)

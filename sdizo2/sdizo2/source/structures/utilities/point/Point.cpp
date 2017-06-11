@@ -35,7 +35,7 @@ void Point::resetCounter(int base)
 	Point::nameCounter = base;
 }
 
-bool Point::operator==(const Point & p)
+bool Point::operator==(const Point & p) const
 {
 	return getName() == p.getName();
 }

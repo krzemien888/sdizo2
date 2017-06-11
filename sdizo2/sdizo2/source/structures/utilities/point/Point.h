@@ -13,7 +13,7 @@ public:
 	static int getCounter();
 	static void resetCounter(int base);
 
-	bool operator==(const Point& p);
+	bool operator==(const Point& p) const;
 
 private:
 	int m_name;

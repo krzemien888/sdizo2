@@ -11,19 +11,6 @@ void Graph::generate(int density, int points)
 
 }
 
-List<Edge> Graph::getEdges()
-{
-	List<Edge> output;
-
-	for (int i = 0; i < getAmountPoints(); i++)
-	{
-		List<Edge> neighbours = getNeighbours(i);
-		while (neighbours.getSize() != 0)
-			output.pushBack(neighbours.popFrontElement());
-	}
-	return output;
-}
-
 int Graph::getAmountPoints()
 {
 	return m_amountPoints;
@@ -31,7 +18,7 @@ int Graph::getAmountPoints()
 
 int Graph::getDensity()
 {
-	return (int)(((float)m_amountEdges)/((float)m_amountPoints));
+	return (int)((((float)m_amountEdges)/((float)m_amountPoints))*100);
 }
 
 int Graph::getAmountEdges()

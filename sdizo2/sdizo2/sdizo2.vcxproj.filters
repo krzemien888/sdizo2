@@ -22,6 +22,7 @@
     <Text Include="dane_flow.txt" />
     <Text Include="dane_mst1.txt" />
     <Text Include="bfTest.txt" />
+    <Text Include="primTest.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\targetver.h">
@@ -165,9 +166,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\alghoritms\primAlghoritm\PrimAlghoritm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PRIMALGHORITM.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

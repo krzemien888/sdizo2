@@ -34,6 +34,7 @@ void ListGraph::addEdge(const Edge &e)
 		Edge newE = e.getInverted();
 		newE.setDirected(true);
 		addEdge(newE);
+		isDirected = false;
 	}
 	m_amountEdges++;
 }
@@ -84,6 +85,22 @@ shared_ptr<Edge> ListGraph::getEdge(int a, int b)
 			curr = curr->next;
 	}
 	return nullptr;
+}
+
+List<Edge> ListGraph::getEdges()
+{
+	List<Edge> output;
+
+
+	for (int i = 0; i < getAmountPoints(); i++)
+	{
+		auto neighbourList = getNeighbours(i);
+		while (neighbourList.getSize() != 0)
+			output.addElement(neighbourList.popFrontElement());
+	}
+
+
+	return output;
 }
 
 List<Edge> ListGraph::getNeighbours(int p)
