@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "sppController.h"
 #include "alghoritms\DjikstraAlghoritm\DjikstraAlghoritm.h"
+#include "alghoritms\bfAlghoritm\bfAlghoritm.h"
 #include "views\spp\sppMenu.h"
 
 using namespace std;
@@ -47,7 +48,19 @@ void sppController::parseInput(const std::string & input)
 		system("pause");
 		break;
 	case 3:
-		
+		alghoritm = new bfAlghoritm;
+		alghoritm->setParameters(startPoint, 0);
+
+		cout << "Dla macierzy: " << endl;
+		alghoritm->prepare(&m_matrix);
+		alghoritm->apply(&m_matrix);
+		alghoritm->printResult();
+
+		cout << "Dla listy s¹siadów: " << endl;
+		alghoritm->prepare(&m_list);
+		alghoritm->apply(&m_list);
+		alghoritm->printResult();
+		system("pause");
 		break;
 	case 4:
 		cout << "Lista s¹siadów: " << endl;
