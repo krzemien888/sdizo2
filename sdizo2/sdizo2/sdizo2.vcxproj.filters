@@ -49,9 +49,6 @@
     <ClInclude Include="source\structures\utilities\edge\Edge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\structures\utilities\point\Point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\structures\priorityQueue\PriorityQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -106,6 +103,24 @@
     <ClInclude Include="source\structures\utilities\disjoinSet\DisjoinSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\alghoritms\fordFulkersonAlghoritm\FordFulkersonAlghoritm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\stack\Stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\queue\Queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\structures\utilities\point\Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\views\flow\FlowMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\controllers\flowController\flowController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -127,9 +142,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\structures\utilities\edge\Edge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\structures\utilities\point\Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\structures\utilities\matrixGraph\MatrixGraph.cpp">
@@ -172,6 +184,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\structures\utilities\disjoinSet\DisjoinSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\alghoritms\fordFulkersonAlghoritm\FordFulkersonAlghoritm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\structures\utilities\point\Point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\views\flow\FlowMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\flowController\flowController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -30,3 +30,4 @@ Point Graph::getRandomPoint()
 {
 	return Point(rand() % this->getAmountPoints());
 }
+

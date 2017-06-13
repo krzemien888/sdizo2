@@ -2,20 +2,33 @@
 #include "stdafx.h"
 
 template<class T>
-class List
+class Stack
 {
-	friend std::ostream& operator<<(std::ostream& str, const List<T>& s);
+	friend std::ostream& operator<<(std::ostream& str, const Stack<T>& s);
 
 public:
-	List() = default;
-	~List() { clearStructure(); };
+	Stack() = default;
+	~Stack() { clearStructure(); };
 
-	List(const List<T> &l);
+	Stack(const Stack<T> &l);
+	bool operator==(const Stack<T>& l);
 
+	Stack<T>& operator=(const Stack<T>&l);
 
+	void add(T value);
+	T pop();
+	bool isEmpty();
 
-	void printData();
-	
+	class Node {
+	public:
+		Node(const T &value) : data(value) {};
+		std::shared_ptr<Node> next = nullptr;
+		std::shared_ptr<Node> prev = nullptr;
+		const T	data;
+	};
+	typename Stack<T>::Node* getNodePtr(int index);
+
+private:
 	void pushBack(const T value);
 	void pushFront(T value);
 	void addElement(int index, T value);
@@ -28,42 +41,25 @@ public:
 	T* getIterator(int index);
 
 	int getSize() const;
-	bool operator==(const List<T>& l);
-
-	List<T>& operator=(const List<T>&l);
 	void setDiplayInline(bool toset);
 	bool isInlineDisplayed();
 
-
-	class Node {
-	public:
-		Node(const T &value) : data(value) {};
-		std::shared_ptr<Node> next = nullptr;
-		std::shared_ptr<Node> prev = nullptr;
-		T data;
-	};
-	typename List<T>::Node* getNodePtr(int index);
-
-private:
-	
 
 	std::shared_ptr<Node> head = nullptr;
 	std::shared_ptr<Node> tail = nullptr;
 	bool isEmpty();
 	int size = 0;
 	bool displayInline = true;
-
-
 };
 
 using namespace std;
 
 template<class T>
-std::ostream& operator<<(std::ostream& str, const List<T>& s)
+std::ostream& operator<<(std::ostream& str, const Stack<T>& s)
 {
 	for (auto i = 0; i < s.getSize(); i++)
 	{
-		str <<  s.getValue(i);
+		str << s.getValue(i);
 		if (s.isDisplayedInline())
 			str << ' ';
 		else
@@ -74,7 +70,7 @@ std::ostream& operator<<(std::ostream& str, const List<T>& s)
 
 
 template<class T>
-bool List<T>::operator==(const List<T>& l)
+bool Stack<T>::operator==(const Stack<T>& l)
 {
 	if (getSize() != l.getSize())
 		return false;
@@ -84,8 +80,8 @@ bool List<T>::operator==(const List<T>& l)
 
 	bool compare = true;
 
-	typename List<T>::Node* l1 = l.getIterator(0);
-	typename List<T>::Node* l2 = getIterator(0);
+	typename Stack<T>::Node* l1 = l.getIterator(0);
+	typename Stack<T>::Node* l2 = getIterator(0);
 
 	for (auto i = 0; i < getSize(); i++)
 	{
@@ -97,7 +93,7 @@ bool List<T>::operator==(const List<T>& l)
 }
 
 template<class T>
-inline List<T>& List<T>::operator=(const List<T>& l)
+inline Stack<T>& Stack<T>::operator=(const Stack<T>& l)
 {
 	if (this == &l)
 		return *this;
@@ -107,19 +103,31 @@ inline List<T>& List<T>::operator=(const List<T>& l)
 }
 
 template<class T>
-inline void List<T>::setDiplayInline(bool toSet)
+void Stack<T>::add(T value)
+{
+	this->pushFront(value);
+}
+
+template<class T>
+T Stack<T>::pop()
+{
+	return popFrontElement();
+}
+
+template<class T>
+void Stack<T>::setDiplayInline(bool toSet)
 {
 	displayInline = toSet;
 }
 
 template<class T>
-inline bool List<T>::isInlineDisplayed()
+inline bool Stack<T>::isInlineDisplayed()
 {
 	return displayInline;
 }
 
 template<class T>
-T* List<T>::getIterator(int index)
+T* Stack<T>::getIterator(int index)
 {
 	if (index == 0)
 		return &(head.get()->data);
@@ -137,28 +145,28 @@ T* List<T>::getIterator(int index)
 }
 
 template<class T>
-T List<T>::getValue(int index) const
+T Stack<T>::getValue(int index) const
 {
 	if (index == 0)
 		return head->data;
 	if (index == getSize() - 1)
 		return tail->data;
 
-	typename List<T>::Node* output = head.get();
+	typename Stack<T>::Node* output = head.get();
 	for (auto i = 0; i < index; i++)
 		output = output->next.get();
 	return output->data;
 }
 
 template<class T>
-inline List<T>::List(const List<T> &l)
+inline Stack<T>::Stack(const Stack<T> &l)
 {
 	for (int i = 0; i < l.getSize(); i++)
 		pushBack(l.getValue(i));
 }
 
 template<class T>
-void List<T>::printData()
+void Stack<T>::printData()
 {
 	if (!isEmpty())
 	{
@@ -172,11 +180,11 @@ void List<T>::printData()
 		cout << endl;
 	}
 	else
-		cout << "Lista jest pusta" << endl;
+		cout << "Stacka jest pusta" << endl;
 }
 
 template<class T>
-void List<T>::pushBack(const T value)
+void Stack<T>::pushBack(const T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 
@@ -196,7 +204,7 @@ void List<T>::pushBack(const T value)
 }
 
 template<class T>
-void List<T>::pushFront(T value)
+void Stack<T>::pushFront(T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 
@@ -216,7 +224,7 @@ void List<T>::pushFront(T value)
 }
 
 template<class T>
-void List<T>::addElement(int index, T value)
+void Stack<T>::addElement(int index, T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 	shared_ptr<Node> currNode = make_shared<Node>(getNodePtr(index));
@@ -256,13 +264,13 @@ void List<T>::addElement(int index, T value)
 }
 
 template<class T>
-void List<T>::addElement(T value)
+void Stack<T>::addElement(T value)
 {
 	pushBack(value);
 }
 
 template<class T>
-T List<T>::popFrontElement()
+T Stack<T>::popFrontElement()
 {
 	T output = getValue(0);
 	auto toDelete = head;
@@ -287,7 +295,7 @@ T List<T>::popFrontElement()
 }
 
 template<class T>
-void List<T>::removeElement(T value)
+void Stack<T>::removeElement(T value)
 {
 	if (findValue(value))
 		--size;
@@ -319,7 +327,7 @@ void List<T>::removeElement(T value)
 }
 
 template<class T>
-void List<T>::clearStructure()
+void Stack<T>::clearStructure()
 {
 	if (!isEmpty())
 	{
@@ -337,7 +345,7 @@ void List<T>::clearStructure()
 }
 
 template<class T>
-bool List<T>::findValue(T toFind)
+bool Stack<T>::findValue(T toFind)
 {
 	if (isEmpty())
 		return false;
@@ -353,19 +361,19 @@ bool List<T>::findValue(T toFind)
 }
 
 template<class T>
-int List<T>::getSize() const
+int Stack<T>::getSize() const
 {
 	return size;
 }
 
 template<class T>
-bool List<T>::isEmpty()
+bool Stack<T>::isEmpty()
 {
 	return size == 0;
 }
 
 template<class T>
-typename List<T>::Node* List<T>::getNodePtr(int index)
+typename Stack<T>::Node* Stack<T>::getNodePtr(int index)
 {
 	if (isEmpty())
 		return nullptr;

@@ -25,6 +25,7 @@ Edge::Edge(const Edge & e)
 	m_startPoint = Point(e.getStart());
 	m_endPoint = Point(e.getEnd());
 	m_value = e.getValue();
+	m_directed = e.isDirected();
 }
 ;
 

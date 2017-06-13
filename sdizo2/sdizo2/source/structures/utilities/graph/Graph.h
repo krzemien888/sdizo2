@@ -15,6 +15,10 @@ public:
 	virtual shared_ptr<Edge> getEdge(int a, int b) = 0;
 	virtual List<Edge> getNeighbours(int a) = 0;
 	virtual List<Edge> getEdges() = 0;
+	virtual int getEdgeValue(int a, int b) = 0;
+	virtual void setEdgeValue(int a, int b, int value) = 0;
+	virtual void increaseEdgeValue(int a, int b, int value) = 0;
+	virtual void decreaseEdgeValue(int a, int b, int value) = 0;
 
 	virtual void clear() = 0;
 
@@ -23,6 +27,7 @@ public:
 	virtual int getDensity();
 	virtual int getAmountEdges();
 
+	virtual Graph* getBlanck() = 0;
 
 	virtual void resize(int newSize) = 0;
 	virtual ~Graph() = default;

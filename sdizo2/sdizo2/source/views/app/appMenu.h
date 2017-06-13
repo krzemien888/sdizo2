@@ -4,7 +4,7 @@ class appMenu :
 	public GenericView
 {
 public:
-	virtual ~appMenu() {};
+	virtual ~appMenu() = default;
 	virtual void print();
 };
 

@@ -150,6 +150,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\controllers\flowController\flowController.h" />
+    <ClInclude Include="source\views\flow\FlowMenu.h" />
+    <ClInclude Include="source\alghoritms\fordFulkersonAlghoritm\FordFulkersonAlghoritm.h" />
+    <ClInclude Include="source\structures\queue\Queue.h" />
+    <ClInclude Include="source\structures\stack\Stack.h" />
     <ClInclude Include="source\structures\utilities\disjoinSet\DisjoinSet.h" />
     <ClInclude Include="source\alghoritms\kruskalAlghoritm\KruskalAlghoiritm.h" />
     <ClInclude Include="source\alghoritms\primAlghoritm\PrimAlghoritm.h" />
@@ -181,6 +186,9 @@
     <ClInclude Include="source\controllers\sppController\sppController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\controllers\flowController\flowController.cpp" />
+    <ClCompile Include="source\views\flow\FlowMenu.cpp" />
+    <ClCompile Include="source\alghoritms\fordFulkersonAlghoritm\FordFulkersonAlghoritm.cpp" />
     <ClCompile Include="source\structures\utilities\disjoinSet\DisjoinSet.cpp" />
     <ClCompile Include="source\alghoritms\kruskalAlghoritm\KruskalAlghoiritm.cpp" />
     <ClCompile Include="source\alghoritms\primAlghoritm\PrimAlghoritm.cpp" />

@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "controllers\appController\AppController.h"
 
+#include "structures\utilities\listGraph\listGraph.h"
+
 int main()
 {
 	AppController app;

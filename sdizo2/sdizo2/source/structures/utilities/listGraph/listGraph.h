@@ -10,6 +10,7 @@ class ListGraph
 {
 public:
 	ListGraph();
+	ListGraph(ListGraph & l);
 
 	void clear();
 	void addEdge(const Edge &e) override;
@@ -19,6 +20,13 @@ public:
 	List<Edge> getNeighbours(int p) override;
 	int getSize();
 	void print();
+	int getEdgeValue(int a, int b);
+	void setEdgeValue(int a, int b, int value) override;
+	void increaseEdgeValue(int a, int b, int value) override;
+	void decreaseEdgeValue(int a, int b, int value) override;
+	void removeEdge(int a, int b);
+	ListGraph* getBlanck() override;
+
 	void resize(int newSize) override;
 	virtual ~ListGraph();
 

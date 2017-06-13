@@ -9,6 +9,7 @@
 
 #include "controllers\sppController\sppController.h"
 #include "controllers\mstController\mstController.h"
+#include "controllers\flowController\flowController.h"
 #include "controllers\testControllers\genericTestController\genericTestController.h"
 
 
@@ -39,7 +40,10 @@ void AppController::parseInput(const std::string &input)
 			controller->Run();
 			break;
 		case 3:
-			
+			controller = std::make_unique<flowController>();
+			controller->Run();
+			break;
+		case 4:
 			break;
 		default:
 			throw new std::invalid_argument("Unknown controller input");

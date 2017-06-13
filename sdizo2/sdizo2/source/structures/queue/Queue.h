@@ -1,21 +1,36 @@
 #pragma once
 #include "stdafx.h"
+#include "structures\list\List.h"
 
 template<class T>
-class List
+class Queue
 {
-	friend std::ostream& operator<<(std::ostream& str, const List<T>& s);
+	friend std::ostream& operator<<(std::ostream& str, const Queue<T>& s);
 
 public:
-	List() = default;
-	~List() { clearStructure(); };
+	Queue() = default;
+	~Queue() { clearStructure(); };
 
-	List(const List<T> &l);
+	Queue(const Queue<T> &l);
+	bool operator==(const Queue<T>& l);
 
+	Queue<T>& operator=(const Queue<T>&l);
 
+	void add(T value);
+	void add(List<T> values);
+	T pop();
+	bool isEmpty();
 
-	void printData();
-	
+	class Node {
+	public:
+		Node(const T &value) : data(value) {};
+		std::shared_ptr<Node> next = nullptr;
+		std::shared_ptr<Node> prev = nullptr;
+		const T	data;
+	};
+
+private:
+	typename Queue<T>::Node* getNodePtr(int index);
 	void pushBack(const T value);
 	void pushFront(T value);
 	void addElement(int index, T value);
@@ -28,42 +43,24 @@ public:
 	T* getIterator(int index);
 
 	int getSize() const;
-	bool operator==(const List<T>& l);
-
-	List<T>& operator=(const List<T>&l);
 	void setDiplayInline(bool toset);
 	bool isInlineDisplayed();
 
 
-	class Node {
-	public:
-		Node(const T &value) : data(value) {};
-		std::shared_ptr<Node> next = nullptr;
-		std::shared_ptr<Node> prev = nullptr;
-		T data;
-	};
-	typename List<T>::Node* getNodePtr(int index);
-
-private:
-	
-
 	std::shared_ptr<Node> head = nullptr;
 	std::shared_ptr<Node> tail = nullptr;
-	bool isEmpty();
 	int size = 0;
 	bool displayInline = true;
-
-
 };
 
 using namespace std;
 
 template<class T>
-std::ostream& operator<<(std::ostream& str, const List<T>& s)
+std::ostream& operator<<(std::ostream& str, const Queue<T>& s)
 {
 	for (auto i = 0; i < s.getSize(); i++)
 	{
-		str <<  s.getValue(i);
+		str << s.getValue(i);
 		if (s.isDisplayedInline())
 			str << ' ';
 		else
@@ -74,7 +71,7 @@ std::ostream& operator<<(std::ostream& str, const List<T>& s)
 
 
 template<class T>
-bool List<T>::operator==(const List<T>& l)
+bool Queue<T>::operator==(const Queue<T>& l)
 {
 	if (getSize() != l.getSize())
 		return false;
@@ -84,8 +81,8 @@ bool List<T>::operator==(const List<T>& l)
 
 	bool compare = true;
 
-	typename List<T>::Node* l1 = l.getIterator(0);
-	typename List<T>::Node* l2 = getIterator(0);
+	typename Queue<T>::Node* l1 = l.getIterator(0);
+	typename Queue<T>::Node* l2 = getIterator(0);
 
 	for (auto i = 0; i < getSize(); i++)
 	{
@@ -97,7 +94,7 @@ bool List<T>::operator==(const List<T>& l)
 }
 
 template<class T>
-inline List<T>& List<T>::operator=(const List<T>& l)
+inline Queue<T>& Queue<T>::operator=(const Queue<T>& l)
 {
 	if (this == &l)
 		return *this;
@@ -107,19 +104,44 @@ inline List<T>& List<T>::operator=(const List<T>& l)
 }
 
 template<class T>
-inline void List<T>::setDiplayInline(bool toSet)
+void Queue<T>::add(T value)
+{
+	this->pushBack(value);
+}
+
+template<class T>
+void Queue<T>::add(List<T> values)
+{
+	auto it = values.getNodePtr(0);
+
+	
+	while (it != nullptr)
+	{
+		add(it->data);
+		it = it->next.get();
+	}
+}
+
+template<class T>
+T Queue<T>::pop()
+{
+	return popFrontElement();
+}
+
+template<class T>
+void Queue<T>::setDiplayInline(bool toSet)
 {
 	displayInline = toSet;
 }
 
 template<class T>
-inline bool List<T>::isInlineDisplayed()
+inline bool Queue<T>::isInlineDisplayed()
 {
 	return displayInline;
 }
 
 template<class T>
-T* List<T>::getIterator(int index)
+T* Queue<T>::getIterator(int index)
 {
 	if (index == 0)
 		return &(head.get()->data);
@@ -137,46 +159,28 @@ T* List<T>::getIterator(int index)
 }
 
 template<class T>
-T List<T>::getValue(int index) const
+T Queue<T>::getValue(int index) const
 {
 	if (index == 0)
 		return head->data;
 	if (index == getSize() - 1)
 		return tail->data;
 
-	typename List<T>::Node* output = head.get();
+	typename Queue<T>::Node* output = head.get();
 	for (auto i = 0; i < index; i++)
 		output = output->next.get();
 	return output->data;
 }
 
 template<class T>
-inline List<T>::List(const List<T> &l)
+inline Queue<T>::Queue(const Queue<T> &l)
 {
 	for (int i = 0; i < l.getSize(); i++)
 		pushBack(l.getValue(i));
 }
 
 template<class T>
-void List<T>::printData()
-{
-	if (!isEmpty())
-	{
-		Node* tmp = head.get();
-
-		while (tmp != nullptr)
-		{
-			cout << tmp->data << " ";
-			tmp = tmp->next.get();
-		}
-		cout << endl;
-	}
-	else
-		cout << "Lista jest pusta" << endl;
-}
-
-template<class T>
-void List<T>::pushBack(const T value)
+void Queue<T>::pushBack(const T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 
@@ -196,7 +200,7 @@ void List<T>::pushBack(const T value)
 }
 
 template<class T>
-void List<T>::pushFront(T value)
+void Queue<T>::pushFront(T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 
@@ -216,7 +220,7 @@ void List<T>::pushFront(T value)
 }
 
 template<class T>
-void List<T>::addElement(int index, T value)
+void Queue<T>::addElement(int index, T value)
 {
 	shared_ptr<Node> newNode = make_shared<Node>(value);
 	shared_ptr<Node> currNode = make_shared<Node>(getNodePtr(index));
@@ -256,13 +260,13 @@ void List<T>::addElement(int index, T value)
 }
 
 template<class T>
-void List<T>::addElement(T value)
+void Queue<T>::addElement(T value)
 {
 	pushBack(value);
 }
 
 template<class T>
-T List<T>::popFrontElement()
+T Queue<T>::popFrontElement()
 {
 	T output = getValue(0);
 	auto toDelete = head;
@@ -287,7 +291,7 @@ T List<T>::popFrontElement()
 }
 
 template<class T>
-void List<T>::removeElement(T value)
+void Queue<T>::removeElement(T value)
 {
 	if (findValue(value))
 		--size;
@@ -319,7 +323,7 @@ void List<T>::removeElement(T value)
 }
 
 template<class T>
-void List<T>::clearStructure()
+void Queue<T>::clearStructure()
 {
 	if (!isEmpty())
 	{
@@ -337,7 +341,7 @@ void List<T>::clearStructure()
 }
 
 template<class T>
-bool List<T>::findValue(T toFind)
+bool Queue<T>::findValue(T toFind)
 {
 	if (isEmpty())
 		return false;
@@ -353,19 +357,19 @@ bool List<T>::findValue(T toFind)
 }
 
 template<class T>
-int List<T>::getSize() const
+int Queue<T>::getSize() const
 {
 	return size;
 }
 
 template<class T>
-bool List<T>::isEmpty()
+bool Queue<T>::isEmpty()
 {
 	return size == 0;
 }
 
 template<class T>
-typename List<T>::Node* List<T>::getNodePtr(int index)
+typename Queue<T>::Node* Queue<T>::getNodePtr(int index)
 {
 	if (isEmpty())
 		return nullptr;

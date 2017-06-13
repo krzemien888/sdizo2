@@ -36,7 +36,7 @@ public:
 	bool isDirected()const;
 
 	Edge getInverted() const;
-
+	
 private:
 	bool m_directed = false;
 	int m_value = 0;

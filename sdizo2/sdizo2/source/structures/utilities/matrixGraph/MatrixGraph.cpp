@@ -10,6 +10,21 @@ MatrixGraph::MatrixGraph()
 	m_matrix.resize(0);
 }
 
+MatrixGraph::MatrixGraph(MatrixGraph & m)
+{
+	resize(m.getAmountPoints());
+
+	for(int i = 0; i < getAmountPoints(); i++)
+		for (int j = 0; j < getAmountPoints(); j++)
+		{
+			auto edge = m.getEdge(i, j);
+			if (edge == nullptr)
+				m_matrix.setValue(i, j, 0);
+			else
+				m_matrix.setValue(i, j, edge->getValue());
+		}
+}
+
 void MatrixGraph::clear()
 {
 	m_matrix.resize(0);
@@ -48,7 +63,7 @@ void MatrixGraph::addPoint(const Point &p)
 
 shared_ptr<Edge> MatrixGraph::getEdge(int a, int b)
 {
-	if (m_matrix.getValue(a, b) != 0)
+	if (m_matrix.getValue(a, b) == 0)
 		return nullptr;
 	else
 		return make_shared<Edge>(m_matrix.getValue(a, b), a, b);
@@ -92,6 +107,37 @@ List<Edge> MatrixGraph::getNeighbours(int p)
 void MatrixGraph::print()
 {
 	m_matrix.print();
+}
+
+MatrixGraph * MatrixGraph::getBlanck()
+{
+	MatrixGraph* output = new MatrixGraph;
+
+	int i = 0;
+	while (output->getAmountPoints() != getAmountPoints())
+		output->addPoint(Point(i++));
+
+	return output;
+}
+
+int MatrixGraph::getEdgeValue(int a, int b)
+{
+	return m_matrix.getValue(a,b);
+}
+
+void MatrixGraph::setEdgeValue(int a, int b, int value)
+{
+	m_matrix.setValue(a, b, value);
+}
+
+void MatrixGraph::increaseEdgeValue(int a, int b, int value)
+{
+	m_matrix.setValue(a, b, m_matrix.getValue(a, b) + value);
+}
+
+void MatrixGraph::decreaseEdgeValue(int a, int b, int value)
+{
+	m_matrix.setValue(a, b, m_matrix.getValue(a, b) - value);
 }
 
 void MatrixGraph::resize(int newSize)
