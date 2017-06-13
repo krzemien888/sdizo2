@@ -28,6 +28,7 @@ private:
 		AngumentedPath(int aFlow, List<Edge> aEdges) { flow = aFlow; edges = aEdges; };
 	};
 
+	bool searchDFS(Graph * graph, int* introducedArray, AngumentedPath &angumentedPath);
 	bool searchBFS(Graph * graph, int* introducedArray, AngumentedPath &angumentedPath);
 	void applyUsingBfs(Graph* graph);
 	void applyUsingDfs(Graph* graph);

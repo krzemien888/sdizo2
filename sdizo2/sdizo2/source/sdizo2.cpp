@@ -4,7 +4,8 @@
 #include "stdafx.h"
 #include "controllers\appController\AppController.h"
 
-#include "structures\utilities\listGraph\listGraph.h"
+#include "structures\queue\Queue.h"
+#include "structures\stack\Stack.h"
 
 int main()
 {

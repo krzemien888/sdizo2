@@ -47,7 +47,6 @@ private:
 
 	std::shared_ptr<Node> head = nullptr;
 	std::shared_ptr<Node> tail = nullptr;
-	bool isEmpty();
 	int size = 0;
 	bool displayInline = true;
 };
@@ -163,24 +162,6 @@ inline Stack<T>::Stack(const Stack<T> &l)
 {
 	for (int i = 0; i < l.getSize(); i++)
 		pushBack(l.getValue(i));
-}
-
-template<class T>
-void Stack<T>::printData()
-{
-	if (!isEmpty())
-	{
-		Node* tmp = head.get();
-
-		while (tmp != nullptr)
-		{
-			cout << tmp->data << " ";
-			tmp = tmp->next.get();
-		}
-		cout << endl;
-	}
-	else
-		cout << "Stacka jest pusta" << endl;
 }
 
 template<class T>

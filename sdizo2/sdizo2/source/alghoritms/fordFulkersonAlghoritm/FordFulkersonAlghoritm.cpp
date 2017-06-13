@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "FordFulkersonAlghoritm.h"
 #include "structures\queue\Queue.h"
+#include "structures\\stack\Stack.h"
 #include "structures\utilities\listGraph\listGraph.h"
 #include "structures\utilities\matrixGraph\MatrixGraph.h"
 
@@ -46,6 +47,48 @@ void FordFulkersonAlghoritm::setParameters(int start, int end)
 
 void FordFulkersonAlghoritm::prepare(Graph * graph)
 {
+}
+
+bool FordFulkersonAlghoritm::searchDFS(Graph * graph, int * introducedArray, AngumentedPath & angumentedPath)
+{
+	Stack<int> stack;
+	bool found = false;
+	bool * visited = new bool[graph->getAmountPoints()];
+	for (int i = 0; i < graph->getAmountPoints(); i++)
+		visited[i] = false;
+	visited[m_startPoint] = true;
+	introducedArray[m_startPoint] = -1;
+
+
+	//BFS Search
+	int currPoint = -1;
+	stack.add(m_startPoint);
+	while (!stack.isEmpty())
+	{
+		currPoint = stack.pop();
+
+		auto allNeighbours = graph->getNeighbours(currPoint);
+
+		while (allNeighbours.getSize() != 0)
+		{
+			auto neighbour = allNeighbours.popFrontElement();
+			if (!visited[neighbour.getEndName()])
+			{
+				stack.add(neighbour.getEndName());
+				visited[neighbour.getEndName()] = true;
+				introducedArray[neighbour.getEndName()] = neighbour.getStartName();
+				if (neighbour.getEndName() == m_endPoint)
+				{
+					found = true;
+					break;
+				}
+			}
+		}
+	}
+
+	delete[] visited;
+
+	return found;
 }
 
 bool FordFulkersonAlghoritm::searchBFS(Graph * graph, int* introducedArray, AngumentedPath &aPath)
@@ -137,9 +180,45 @@ void FordFulkersonAlghoritm::applyUsingBfs(Graph * graph)
 
 void FordFulkersonAlghoritm::applyUsingDfs(Graph * graph)
 {
-	bool * visited = new bool[graph->getAmountPoints()];
+	int* introducedArray = new int[graph->getAmountPoints()];
 
+	Graph* residualGraph;
+	if (outputSetting == AlghoritmOutputSetting::list)
+		residualGraph = new ListGraph(*(static_cast<ListGraph*>(graph)));
+	else
+		residualGraph = new MatrixGraph(*(static_cast<MatrixGraph*>(graph)));
 
+	AngumentedPath aPath;
+	while (searchDFS(residualGraph, introducedArray, aPath))
+	{
+		//Build AngumentedPath
+		int minFlow = numeric_limits<int>::max();
+		int currPoint = m_endPoint;
+		while (currPoint != m_startPoint)
+		{
+			auto currEdge = graph->getEdge(introducedArray[currPoint], currPoint);
+			if (currEdge->getValue() < minFlow)
+				minFlow = currEdge->getValue();
+			aPath.edges.pushFront(*currEdge);
+			currPoint = introducedArray[currPoint];
+		}
+		aPath.flow = minFlow;
 
-	delete[]visited;
+		currPoint = m_endPoint;
+		//Applying found flow to angumented path edges
+		while (currPoint != m_startPoint)
+		{
+			residualGraph->decreaseEdgeValue(introducedArray[currPoint], currPoint, aPath.flow);
+			residualGraph->increaseEdgeValue(currPoint, introducedArray[currPoint], aPath.flow);
+			currPoint = introducedArray[currPoint];
+		}
+
+		m_angumentedPaths.pushBack(aPath);
+		aPath.edges.clearStructure();
+
+	}
+
+	delete residualGraph;
+	delete[] introducedArray;
+
 }
