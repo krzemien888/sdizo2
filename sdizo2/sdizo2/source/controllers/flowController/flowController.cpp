@@ -89,6 +89,26 @@ void flowController::parseInput(const std::string & input)
 		system("pause");
 		break;
 	case 4:
+		system("cls");
+		int vertexes, density, range, startValue;
+
+		cout << "Iloœæ wiecho³ków: ";
+		cin >> vertexes;
+		cout << endl;
+
+		cout << "Gêstoœæ grafu: ";
+		cin >> density;
+		cout << endl;
+
+		cout << "Wartoœæ pocz¹tkowa: ";
+		cin >> startValue;
+		cout << endl;
+
+		cout << "Zakres wartoœci: ";
+		cin >> range;
+		cout << endl;
+
+		generateGraph(density, vertexes, range, startValue, true);
 		break;
 	case 5:
 		cout << "Lista s¹siadów: " << endl;

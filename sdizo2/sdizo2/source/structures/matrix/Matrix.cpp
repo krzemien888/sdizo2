@@ -46,11 +46,14 @@ void Matrix::print()
 {
 	cout << "\t ";
 	for (int x = 0; x < getSize(); x++)
+	{
+		cout.width(4);
 		cout << x << " ";
+	}
 	cout << endl;
 
 	cout << "\t";
-	for (int x = 0; x < getSize(); x++)
+	for (int x = 0; x < getSize()*4; x++)
 		cout << "--";
 	cout << endl;
 
@@ -58,7 +61,10 @@ void Matrix::print()
 	{
 		cout << x << "\t" << "|";
 		for (int y = 0; y < getSize(); y++)
+		{
+			cout.width(4);
 			cout << getValue(x, y) << ' ';
+		}
 		cout << endl;
 	}
 }

@@ -52,16 +52,28 @@ void mstController::parseInput(const std::string & input)
 		loadFromFile();
 		break;
 	case 2:
-		cout << "Lista s¹siadów: " << endl;
-		m_list.print();
+		alghoritm = new KruskalAlghoiritm;
+
+		cout << "Dla macierzy: " << endl;
+		alghoritm->setOuputType(AlghoritmOutputSetting::matrix);
+		alghoritm->prepare(&m_matrix);
+		alghoritm->apply(&m_matrix);
+		alghoritm->printResult();
+
 		cout << endl;
-		cout << "Macierz s¹siedztwa: " << endl;
-		m_matrix.print();
-		cout << endl;
+
+		cout << "Dla listy s¹siadów: " << endl;
+		alghoritm->setOuputType(AlghoritmOutputSetting::list);
+		alghoritm->prepare(&m_list);
+		alghoritm->apply(&m_list);
+		alghoritm->printResult();
 		system("pause");
+
+
+
 		break;
 	case 3:
-		alghoritm = new KruskalAlghoiritm;
+		alghoritm = new PrimAlghoritm;
 
 		cout << "Dla macierzy: " << endl;
 		alghoritm->setOuputType(AlghoritmOutputSetting::matrix);
@@ -79,21 +91,34 @@ void mstController::parseInput(const std::string & input)
 		system("pause");
 		break;
 	case 4:
-		alghoritm = new PrimAlghoritm;
+		system("cls");
+		int vertexes, density, range, startValue;
 
-		cout << "Dla macierzy: " << endl;
-		alghoritm->setOuputType(AlghoritmOutputSetting::matrix);
-		alghoritm->prepare(&m_matrix);
-		alghoritm->apply(&m_matrix);
-		alghoritm->printResult();
-
+		cout << "Iloœæ wiecho³ków: ";
+		cin >> vertexes;
 		cout << endl;
 
-		cout << "Dla listy s¹siadów: " << endl;
-		alghoritm->setOuputType(AlghoritmOutputSetting::list);
-		alghoritm->prepare(&m_list);
-		alghoritm->apply(&m_list);
-		alghoritm->printResult();
+		cout << "Gêstoœæ grafu: ";
+		cin >> density;
+		cout << endl;
+
+		cout << "Wartoœæ pocz¹tkowa: ";
+		cin >> startValue;
+		cout << endl;
+
+		cout << "Zakres wartoœci: ";
+		cin >> range;
+		cout << endl;
+
+		generateGraph(density, vertexes, range, startValue, false);
+		break;
+	case 5:
+		cout << "Lista s¹siadów: " << endl;
+		m_list.print();
+		cout << endl;
+		cout << "Macierz s¹siedztwa: " << endl;
+		m_matrix.print();
+		cout << endl;
 		system("pause");
 		break;
 	default:

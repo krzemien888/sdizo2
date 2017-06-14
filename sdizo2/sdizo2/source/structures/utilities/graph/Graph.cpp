@@ -19,7 +19,15 @@ int Graph::getAmountPoints()
 
 int Graph::getDensity()
 {
-	return (int)((((float)m_amountEdges)/((float)m_amountPoints))*100);
+	int maxEdgeAmount = m_amountPoints*(m_amountPoints - 1);;
+	int amountOfEdges = m_amountEdges;
+	if (!isDirected)
+	{
+		maxEdgeAmount /= 2;
+		amountOfEdges /= 2;
+	}
+
+	return (int)((((float)amountOfEdges)/((float)maxEdgeAmount))*100);
 }
 
 int Graph::getAmountEdges()

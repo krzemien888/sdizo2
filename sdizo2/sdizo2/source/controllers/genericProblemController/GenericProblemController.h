@@ -24,6 +24,6 @@ public:
 	virtual void handleAdditionalParameters(const std::string&) = 0;
 	virtual void parseEdgeString(const std::string&);
 	virtual void print();
-	void generateGraph(int density, int vertex, int range, int baseValue);
+	void generateGraph(int density, int vertex, int range, int baseValue, bool directed);
 };
 

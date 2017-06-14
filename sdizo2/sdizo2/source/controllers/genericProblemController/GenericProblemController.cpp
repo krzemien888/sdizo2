@@ -63,7 +63,7 @@ void GenericProblemController::print()
 	m_list.print();
 }
 
-void GenericProblemController::generateGraph(int density, int vertex, int range, int baseValue)
+void GenericProblemController::generateGraph(int density, int vertex, int range, int baseValue, bool directed)
 {
 	m_matrix.clear();
 	m_list.clear();
@@ -78,10 +78,15 @@ void GenericProblemController::generateGraph(int density, int vertex, int range,
 
 	while (m_matrix.getDensity() < density)
 	{
-		Edge e(rand()%range + baseValue, rand()%vertex, rand() % vertex);
+		Edge e(rand()%range + baseValue, rand()%vertex, rand() % vertex, directed);
+
+		if (m_matrix.getEdgeValue(e.getStartName(), e.getEndName()) != 0 || e.getEndName() == e.getStartName())
+			continue;
 		m_matrix.addEdge(e);
 		m_list.addEdge(e);
 		dj.makeUnion(e.getStartName(), e.getEndName());
+		cout << "Density: " << m_matrix.getDensity() << endl;
+		cout << "Edges: " << m_matrix.getAmountEdges() << endl;
 	}
 
 	//Check if no vertexes are not connected
@@ -90,7 +95,7 @@ void GenericProblemController::generateGraph(int density, int vertex, int range,
 			for (int k = 0; k < dj.getSetSize(); k++)
 				if (dj.findSet(i) != dj.findSet(k))
 				{
-					Edge e(rand() % range + baseValue, i, k);
+					Edge e(rand() % range + baseValue, i, k, directed);
 					m_matrix.addEdge(e);
 					m_list.addEdge(e);
 				}
