@@ -9,6 +9,8 @@ public:
 	void makeUnion(int setA, int setB);
 	int findSet(int toFind) const;
 	int getSetRank(int set) const;
+	bool checkIntegration() const;
+	int getSetSize()const;
 
 	void print() const;
 

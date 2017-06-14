@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GenericProblemController.h"
+#include "structures\utilities\disjoinSet\DisjoinSet.h"
 
 using namespace std;
 
@@ -60,4 +61,38 @@ void GenericProblemController::print()
 	m_matrix.print();
 	std::cout << "\nReprezentacja listowa\n";
 	m_list.print();
+}
+
+void GenericProblemController::generateGraph(int density, int vertex, int range, int baseValue)
+{
+	m_matrix.clear();
+	m_list.clear();
+
+	m_matrix.resize(vertex);
+	m_list.resize(vertex);
+
+	DisjoinSet dj(vertex);
+
+	for (int i = 0; i < vertex; i++)
+		dj.makeSet(i);
+
+	while (m_matrix.getDensity() < density)
+	{
+		Edge e(rand()%range + baseValue, rand()%vertex, rand() % vertex);
+		m_matrix.addEdge(e);
+		m_list.addEdge(e);
+		dj.makeUnion(e.getStartName(), e.getEndName());
+	}
+
+	//Check if no vertexes are not connected
+	if(!dj.checkIntegration())
+		for (int i = 0; i < dj.getSetSize(); i++)
+			for (int k = 0; k < dj.getSetSize(); k++)
+				if (dj.findSet(i) != dj.findSet(k))
+				{
+					Edge e(rand() % range + baseValue, i, k);
+					m_matrix.addEdge(e);
+					m_list.addEdge(e);
+				}
+
 }

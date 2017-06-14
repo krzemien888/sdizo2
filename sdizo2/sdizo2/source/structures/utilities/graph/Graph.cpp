@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Graph.h"
 
+
 void Graph::generate(int density, int points)
 {
 	for (int i = 0; i < points; i++)

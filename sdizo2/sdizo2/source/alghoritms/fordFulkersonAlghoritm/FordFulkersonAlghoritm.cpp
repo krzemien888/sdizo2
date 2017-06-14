@@ -101,7 +101,6 @@ bool FordFulkersonAlghoritm::searchBFS(Graph * graph, int* introducedArray, Angu
 	visited[m_startPoint] = true;
 	introducedArray[m_startPoint] = -1;
 
-
 	//BFS Search
 	int currPoint = -1;
 	queue.add(m_startPoint);

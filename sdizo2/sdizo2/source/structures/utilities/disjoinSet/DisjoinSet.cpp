@@ -53,6 +53,21 @@ int DisjoinSet::getSetRank(int set) const
 	return m_array[findSet(set)].rank;
 }
 
+bool DisjoinSet::checkIntegration() const
+{
+
+	for (int i = 0; i < setSize; i++)
+		for (int k = 0; k < setSize; k++)
+			if (findSet(i) != findSet(k))
+				return false;
+	return true;
+}
+
+int DisjoinSet::getSetSize() const
+{
+	return setSize;
+}
+
 void DisjoinSet::print() const
 {
 	for (int i = 0; i < setSize; i++)
