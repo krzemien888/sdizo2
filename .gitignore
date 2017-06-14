@@ -240,3 +240,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/doOddania/Sprawozdanie-SDiZO-2.pdf
+/sdizo2/x64/Release/*.csv

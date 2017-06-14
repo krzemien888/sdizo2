@@ -121,6 +121,9 @@
     <ClInclude Include="source\controllers\flowController\flowController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\controllers\testControllers\Tester.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\sdizo2.cpp">
@@ -196,6 +199,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\controllers\flowController\flowController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\controllers\testControllers\Tester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -131,6 +131,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\source;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -184,6 +185,7 @@
     <ClInclude Include="source\views\genericView\GenericView.h" />
     <ClInclude Include="source\views\spp\sppMenu.h" />
     <ClInclude Include="source\controllers\sppController\sppController.h" />
+    <ClInclude Include="source\controllers\testControllers\Tester.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\controllers\flowController\flowController.cpp" />
@@ -216,6 +218,7 @@
     <ClCompile Include="source\views\app\appMenu.cpp" />
     <ClCompile Include="source\views\spp\sppMenu.cpp" />
     <ClCompile Include="source\controllers\sppController\sppController.cpp" />
+    <ClCompile Include="source\controllers\testControllers\Tester.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
