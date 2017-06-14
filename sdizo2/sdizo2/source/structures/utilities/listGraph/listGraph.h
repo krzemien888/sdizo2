@@ -18,6 +18,8 @@ public:
 	shared_ptr<Edge> getEdge(int a, int b) override;
 	List<Edge> getEdges() override;
 	List<Edge> getNeighbours(int p) override;
+	void addNeighboursSorted(int a, PriorityQueue<Edge> &queue) override;
+	PriorityQueue<Edge> getConnections(List<int> &source) override;
 	int getSize();
 	void print();
 	int getEdgeValue(int a, int b);

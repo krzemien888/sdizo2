@@ -26,7 +26,7 @@ private:
 	virtual void fixDown(int index);
 	
 protected:
-	std::unique_ptr<Array<T>> array;
+	std::shared_ptr<Array<T>> array;
 	void printNode(std::string &sMiddle, std::string &sBefore, int currNode);
 	
 };
@@ -34,7 +34,7 @@ protected:
 template<class T>
 PriorityQueue<T>::PriorityQueue()
 {
-	array = make_unique<Array<T>>(20);
+	array = make_shared<Array<T>>(20);
 };
 
 
@@ -43,7 +43,7 @@ using namespace std;
 template<class T>
 PriorityQueue<T>::PriorityQueue(int size)
 {
-	array = make_unique<Array<T>>(size * 2);
+	array = make_shared<Array<T>>(size * 2);
 };
 
 template<class T>

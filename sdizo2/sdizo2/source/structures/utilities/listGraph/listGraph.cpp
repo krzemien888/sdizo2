@@ -128,6 +128,34 @@ List<Edge> ListGraph::getNeighbours(int p)
 	return output;
 }
 
+void ListGraph::addNeighboursSorted(int a, PriorityQueue<Edge> &queue)
+{
+	Node* curr = (m_data[a]).next;
+
+	while (curr != nullptr)
+	{
+		queue.addElement(*(curr->data));
+		curr = curr->next;
+	}
+
+}
+
+PriorityQueue<Edge> ListGraph::getConnections(List<int>& source)
+{
+	PriorityQueue<Edge> output;
+	auto currPoint = source.getNodePtr(0);
+
+	while (currPoint != nullptr)
+	{
+		for (int i = 0; i < this->getAmountPoints(); i++)
+			if (getEdgeValue(currPoint->data, i) != 0 && !source.findValue(i) 
+					&& !output.findValue(Edge(1, currPoint->data, i)))
+				output.addElement(Edge(getEdgeValue(currPoint->data, i), currPoint->data, i, isDirected));
+		currPoint = currPoint->next.get();
+	}
+	return output;
+}
+
 int ListGraph::getSize()
 {
 	return m_size;

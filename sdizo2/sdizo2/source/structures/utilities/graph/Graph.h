@@ -3,6 +3,7 @@
 #include "structures\utilities\point\Point.h"
 #include "structures\utilities\edge\Edge.h"
 #include "structures\list\List.h"
+#include "structures\priorityQueue\PriorityQueue.h"
 
 class Graph
 {
@@ -17,6 +18,8 @@ public:
 	virtual shared_ptr<Edge> getEdge(int a, int b) = 0;
 	virtual List<Edge> getNeighbours(int a) = 0;
 	virtual List<Edge> getEdges() = 0;
+	virtual void addNeighboursSorted(int a, PriorityQueue<Edge> &queue) = 0;
+	virtual PriorityQueue<Edge> getConnections(List<int> &source) = 0;
 	virtual int getEdgeValue(int a, int b) = 0;
 	virtual void setEdgeValue(int a, int b, int value) = 0;
 	virtual void increaseEdgeValue(int a, int b, int value) = 0;

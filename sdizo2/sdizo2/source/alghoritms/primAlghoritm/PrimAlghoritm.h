@@ -18,9 +18,7 @@ public:
 
 private:
 	int m_currentGraphSize = 0;
-	Graph* m_outputGraph = nullptr;
-	Edge* m_resultArray = nullptr;
-	PriorityQueue<pointValueStructure> m_queue;
+	List<Edge> m_resultList;
 
 	int whoIntroduced(int) const;
 };

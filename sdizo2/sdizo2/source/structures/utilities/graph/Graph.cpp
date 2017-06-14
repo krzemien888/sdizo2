@@ -61,3 +61,5 @@ void Graph::generate(int density, int vertex, int range, int baseValue, bool dir
 				}
 
 }
+
+

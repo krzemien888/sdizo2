@@ -93,6 +93,29 @@ List<Edge> MatrixGraph::getEdges()
 	return output;
 }
 
+void MatrixGraph::addNeighboursSorted(int a, PriorityQueue<Edge>& queue)
+{
+	for (int i = 0; i < getAmountPoints(); i++)
+		if (m_matrix.getValue(a, i) != 0)
+			queue.addElement(Edge(m_matrix.getValue(a, i), a, i, true));
+}
+
+PriorityQueue<Edge> MatrixGraph::getConnections(List<int>& source)
+{
+	PriorityQueue<Edge> output;
+	auto currPoint = source.getNodePtr(0);
+
+	while (currPoint != nullptr)
+	{
+		for (int i = 0; i < this->getAmountPoints(); i++)
+			if (m_matrix.getValue(currPoint->data, i) != 0 && !source.findValue(i)
+					&& !output.findValue(Edge(1, currPoint->data, i)))
+				output.addElement(Edge(m_matrix.getValue(currPoint->data, i), currPoint->data, i, isDirected));
+		currPoint = currPoint->next.get();
+	}
+	return output;
+}
+
 List<Edge> MatrixGraph::getNeighbours(int p)
 {
 	List<Edge> output;
