@@ -12,7 +12,7 @@ public:
 	virtual void runAllTests() = 0;
 
 protected:
-	virtual void saveToFile(int testSize, int time);
+	virtual void saveToFile(int testSize, double time);
 	virtual void saveToFile(std::string message);
 
 	std::string filename;

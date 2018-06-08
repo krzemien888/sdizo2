@@ -6,7 +6,7 @@
 
 #include "structures\queue\Queue.h"
 #include "structures\stack\Stack.h"
-
+#include <exception>
 int main()
 {
 	AppController app;
@@ -14,8 +14,9 @@ int main()
 	try {
 		app.Run();
 	}
-	catch (...)
+	catch (exception &e)
 	{
+		std::cout << e.what() << std::endl;
 		std::cout << "Critical error, application shutdown.\n";
 		system("pause");
 	}

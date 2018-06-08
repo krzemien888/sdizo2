@@ -4,7 +4,7 @@
 using namespace std;
 
 
-void genericTestController::saveToFile(int testSize, int time)
+void genericTestController::saveToFile(int testSize, double time)
 {
 	file.open(filename, std::ios::out | std::ios::app);
 	if (file.good())

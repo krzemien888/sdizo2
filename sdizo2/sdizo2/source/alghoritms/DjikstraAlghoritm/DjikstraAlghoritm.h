@@ -24,14 +24,6 @@ public:
 	friend std::ostream& operator<<(std::ostream& str, const pointValueStructure& s);
 };
 
-/**
-	add O(logn)
-	extract-min O(1)
-	contains O(logn)
-	decrease(logn)
-
-	So, Djikstra O(nlogn)
-*/
 class DjikstraAlghoritm :
 	public IAlghoritm
 {

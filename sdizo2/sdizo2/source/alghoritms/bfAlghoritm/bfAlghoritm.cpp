@@ -14,7 +14,10 @@ void bfAlghoritm::prepare(Graph * graph)
 	m_currentGraphSize = graph->getAmountPoints();
 
 	if (m_array != nullptr)
+	{
 		delete[] m_array;
+		m_array = nullptr;
+	}
 	m_array = new queueStructure[m_currentGraphSize];
 
 	m_primalEdgeList = graph->getEdges();
@@ -33,7 +36,7 @@ void bfAlghoritm::apply(Graph * graph)
 	for (int i = 0; i < m_currentGraphSize - 1; i++)
 	{
 		auto listIterator = m_primalEdgeList.getNodePtr(0);
-		while (listIterator != nullptr)
+		for (int i = 0; i < m_primalEdgeList.getSize(); i++)
 		{
 			Edge currEdge = listIterator->data;
 			

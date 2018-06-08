@@ -12,7 +12,7 @@ using namespace std;
 void Tester::runAllTests()
 {
 	cout << "Shortest path problem started" << endl;
-	sppTests();
+	/*sppTests();*/
 	cout << "Shortest path problem ended" << endl;
 
 	cout << "Minimal spining tree problem started" << endl;
@@ -41,7 +41,7 @@ void Tester::djikstraTest()
 	
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
-	int totalTime = 0;
+	double totalTime = 0;
 	
 	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
@@ -68,7 +68,7 @@ void Tester::djikstraTest()
 				djAlg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -80,7 +80,6 @@ void Tester::djikstraTest()
 	cout << "List testing" << endl;
 	ListGraph l;
 
-	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
@@ -106,7 +105,7 @@ void Tester::djikstraTest()
 				djAlg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -125,7 +124,7 @@ void Tester::bfTest()
 
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
-	int totalTime = 0;
+	double totalTime = 0;
 
 	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
@@ -154,7 +153,7 @@ void Tester::bfTest()
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -166,7 +165,6 @@ void Tester::bfTest()
 	cout << "List testing" << endl;
 	ListGraph l;
 
-	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
@@ -193,7 +191,7 @@ void Tester::bfTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -206,7 +204,7 @@ void Tester::bfTest()
 void Tester::mstTests()
 {
 	cout << "Testing Kruskal alghoritm" << endl;
-	kruskalTest();
+	/*kruskalTest();*/
 	cout << "Testing Prim alghoritm" << endl;
 	primTest();
 }
@@ -220,7 +218,7 @@ void Tester::kruskalTest()
 
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
-	int totalTime = 0;
+	double totalTime = 0;
 
 	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
@@ -241,14 +239,14 @@ void Tester::kruskalTest()
 
 			for (int i = 0; i < 100; i++)
 			{
-				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
+				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&m);
 
 				startTime = chrono::high_resolution_clock::now();
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -260,7 +258,6 @@ void Tester::kruskalTest()
 	cout << "List testing" << endl;
 	ListGraph l;
 
-	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
@@ -279,14 +276,14 @@ void Tester::kruskalTest()
 
 			for (int i = 0; i < 100; i++)
 			{
-				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
+				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&l);
 
 				startTime = chrono::high_resolution_clock::now();
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -305,7 +302,7 @@ void Tester::primTest()
 
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
-	int totalTime = 0;
+	double totalTime = 0;
 
 	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
@@ -326,14 +323,21 @@ void Tester::primTest()
 
 			for (int i = 0; i < 100; i++)
 			{
-				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
+				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&m);
+				try {
+					startTime = chrono::high_resolution_clock::now();
+					Alg.apply(&m);
+					endTime = chrono::high_resolution_clock::now();
+				}
+				catch (const logic_error &e)
+				{
+					m.print();
+					std::cout << e.what();
+					system("pause");
+				}
 
-				startTime = chrono::high_resolution_clock::now();
-				Alg.apply(&m);
-				endTime = chrono::high_resolution_clock::now();
-
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -345,7 +349,6 @@ void Tester::primTest()
 	cout << "List testing" << endl;
 	ListGraph l;
 
-	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
@@ -365,14 +368,14 @@ void Tester::primTest()
 			totalTime = 0;
 			for (int i = 0; i < 100; i++)
 			{
-				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
+				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&l);
 
 				startTime = chrono::high_resolution_clock::now();
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -402,7 +405,7 @@ void Tester::ffDFSTest()
 
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
-	int totalTime = 0;
+	double totalTime = 0;
 
 	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
@@ -432,7 +435,7 @@ void Tester::ffDFSTest()
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -444,7 +447,6 @@ void Tester::ffDFSTest()
 	cout << "List testing" << endl;
 	ListGraph l;
 
-	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
@@ -472,7 +474,7 @@ void Tester::ffDFSTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -492,7 +494,7 @@ void Tester::ffBFSTest()
 
 	chrono::high_resolution_clock::time_point startTime;
 	chrono::high_resolution_clock::time_point endTime;
-	int totalTime = 0;
+	double totalTime = 0;
 
 	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
@@ -522,7 +524,7 @@ void Tester::ffBFSTest()
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}
@@ -534,7 +536,6 @@ void Tester::ffBFSTest()
 	cout << "List testing" << endl;
 	ListGraph l;
 
-	cout << "Matrix testing" << endl;
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
@@ -562,7 +563,7 @@ void Tester::ffBFSTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (int)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += (double)std::chrono::duration_cast<chrono::seconds>(endTime - startTime).count();
 
 				cout << "Progress: " << i * 100 / 100 << "\r";
 			}

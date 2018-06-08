@@ -80,8 +80,9 @@ T PriorityQueue<T>::popElement()
 		return output;
 	}
 	else
-		throw new logic_error("Queue is empty!");
+		throw logic_error("Queue is empty!");
 }
+
 template<class T>
 T PriorityQueue<T>::popElement(const int index)
 {
@@ -95,7 +96,7 @@ T PriorityQueue<T>::popElement(const int index)
 		return output;
 	}
 	else
-		throw new logic_error("Queue is empty!");
+		throw logic_error("Queue is empty!");
 };
 
 template<class T>
