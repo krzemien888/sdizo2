@@ -86,18 +86,12 @@ int Matrix::getSize()
 
 void Matrix::clearData()
 {
-	if (m_data != nullptr)
-	{
-		for (int i = 0; i < m_size; i++)
-		{
-			if (m_data[i] != nullptr) 
-			{
-				delete[] m_data[i];
-				m_data[i] = nullptr;
-			}
-		}
-		delete[] m_data;
-		m_data = nullptr;
+	for (int i = 0; i < m_size; i++)
+	{	
+		delete[] m_data[i];
+		m_data[i] = nullptr;
 	}
+	delete[] m_data;
+	m_data = nullptr;
 	m_size = 0;
 }

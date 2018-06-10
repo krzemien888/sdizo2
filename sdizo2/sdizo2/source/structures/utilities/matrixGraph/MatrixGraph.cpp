@@ -109,7 +109,7 @@ PriorityQueue<Edge> MatrixGraph::getConnections(List<int>& source)
 	{
 		for (int i = 0; i < this->getAmountPoints(); i++)
 		{
-			if (m_matrix.getValue(currPoint->data, i) != 0 && !source.findValue(i) && !output.findValue(Edge(1, currPoint->data, i)))
+			if (m_matrix.getValue(currPoint->data, i) != 0 )
 			{
 				output.addElement(Edge(m_matrix.getValue(currPoint->data, i), currPoint->data, i, isDirected));
 			}

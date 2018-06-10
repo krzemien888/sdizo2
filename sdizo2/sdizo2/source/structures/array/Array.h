@@ -20,6 +20,19 @@ public:
 		currSize = 0;
 	};
 
+	Array(int size, T fillValue)
+	{
+		data = new T[size];
+		allocatedSize = size;
+		isCheap = false;
+		currSize = size;
+
+		for (int i = 0; i < this->currSize; i++)
+		{
+			this->setValue(i, fillValue);
+		}
+	}
+
 	Array(const Array<T> &a)
 	{
 		for (int i = 0; i < a.getSize(); i++)

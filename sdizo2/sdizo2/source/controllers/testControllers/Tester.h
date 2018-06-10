@@ -17,13 +17,13 @@ private:
 	static const int densityArraySize = 4;
 	static const int vertexArraySize = 5;
 
-	int densityTable[densityArraySize] = { 25, 50, 75, 99 };
-	int vertexCountTable[vertexArraySize] = { 5, 10, 10, 10, 10};
+	int densityTable[densityArraySize] = {25, 50, 75, 99 };
+	int vertexCountTable[vertexArraySize] = { 100, 200, 300, 400, 500};
+	/*int vertexCountTable[vertexArraySize] = { 7, 7, 7, 7, 7};*/
 	int valueRange = 100;
 	int valueBase = 1;
 
-
-
+	void test(IAlghoritm* alg, bool directed);
 	void sppTests();
 	void djikstraTest();
 	void bfTest();

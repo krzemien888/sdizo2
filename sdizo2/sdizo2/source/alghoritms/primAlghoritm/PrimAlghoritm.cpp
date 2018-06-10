@@ -26,16 +26,22 @@ void PrimAlghoritm::apply(Graph * graph)
 	List<int> donePoints;
 	donePoints.clearStructure();
 	donePoints.addElement(0);
-
-	bool firstIteration = true;
-
+	Array<bool> visitedVertices(graph->getAmountPoints(), false);
+	visitedVertices.setValue(0, true);
 	
 	while (donePoints.getSize() != m_currentGraphSize)
 	{
 		auto con = graph->getConnections(donePoints);
-		auto currPoint = con.popElement();
-		m_resultList.pushBack(currPoint);
-		donePoints.addElement(currPoint.getEndName());
+		while (con.getSize() != 0)
+		{
+			auto currPoint = con.popElement();
+			if (!visitedVertices.getValue(currPoint.getEndName()))
+			{
+				m_resultList.pushBack(currPoint);
+				donePoints.addElement(currPoint.getEndName());
+				visitedVertices.setValue(currPoint.getEndName(), true);
+			}
+		}
 	}
 }
 

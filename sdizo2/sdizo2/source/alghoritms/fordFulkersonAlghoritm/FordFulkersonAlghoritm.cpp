@@ -58,11 +58,14 @@ bool FordFulkersonAlghoritm::searchDFS(Graph * graph, int * introducedArray, Ang
 		visited[i] = false;
 	visited[m_startPoint] = true;
 	introducedArray[m_startPoint] = -1;
-
-
-	//BFS Search
+	/*cout << "DFS" << endl;
+	graph->print();*/
+	//DFS Search
 	int currPoint = -1;
 	stack.add(m_startPoint);
+	/*auto startTime = chrono::high_resolution_clock::now();
+	double totalTime = 0;*/
+	
 	while (!stack.isEmpty())
 	{
 		currPoint = stack.pop();
@@ -83,6 +86,13 @@ bool FordFulkersonAlghoritm::searchDFS(Graph * graph, int * introducedArray, Ang
 					break;
 				}
 			}
+			/*auto endTime = chrono::high_resolution_clock::now();
+			totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
+			if (totalTime > 10) {
+				graph->print();
+				system("pause");
+				return false;
+			}*/
 		}
 	}
 
@@ -145,12 +155,14 @@ void FordFulkersonAlghoritm::applyUsingBfs(Graph * graph)
 	AngumentedPath aPath;
 	while (searchBFS(residualGraph, introducedArray, aPath))
 	{
+		/*cout << "alg" << endl;
+		graph->print();*/
 		//Build AngumentedPath
 		int minFlow = numeric_limits<int>::max();
 		int currPoint = m_endPoint;
 		while (currPoint != m_startPoint)
 		{
-			auto currEdge = graph->getEdge(introducedArray[currPoint], currPoint);
+			auto currEdge = residualGraph->getEdge(introducedArray[currPoint], currPoint);
 			if (currEdge->getValue() < minFlow)
 				minFlow = currEdge->getValue();
 			aPath.edges.pushFront(*currEdge);
@@ -187,22 +199,32 @@ void FordFulkersonAlghoritm::applyUsingDfs(Graph * graph)
 	else
 		residualGraph = new MatrixGraph(*(static_cast<MatrixGraph*>(graph)));
 
+	/*cout << "Entry graph" << endl;
+	graph->print();*/
+	
 	AngumentedPath aPath;
 	while (searchDFS(residualGraph, introducedArray, aPath))
 	{
+		/*cout << "Alg" << endl;
+		residualGraph->print();*/
 		//Build AngumentedPath
 		int minFlow = numeric_limits<int>::max();
 		int currPoint = m_endPoint;
 		while (currPoint != m_startPoint)
 		{
-			auto currEdge = graph->getEdge(introducedArray[currPoint], currPoint);
+			auto currEdge = residualGraph->getEdge(introducedArray[currPoint], currPoint);
 			if (currEdge->getValue() < minFlow)
 				minFlow = currEdge->getValue();
 			aPath.edges.pushFront(*currEdge);
 			currPoint = introducedArray[currPoint];
 		}
 		aPath.flow = minFlow;
-
+		/*cout << "Min flow: " << minFlow << endl;
+		cout << "Angumented path" << endl;
+		for (int i = 0; i < aPath.edges.getSize(); i++)
+		{
+			aPath.edges.printData();
+		}*/
 		currPoint = m_endPoint;
 		//Applying found flow to angumented path edges
 		while (currPoint != m_startPoint)
@@ -214,7 +236,13 @@ void FordFulkersonAlghoritm::applyUsingDfs(Graph * graph)
 
 		m_angumentedPaths.pushBack(aPath);
 		aPath.edges.clearStructure();
-
+		/*cout << "Should be cleared " << endl;
+		for (int i = 0; i < aPath.edges.getSize(); i++)
+		{
+			aPath.edges.printData();
+		}
+		cout << "After change" << endl;
+		residualGraph->print();*/
 	}
 
 	delete residualGraph;

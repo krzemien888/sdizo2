@@ -52,7 +52,7 @@ void DjikstraAlghoritm::prepare(Graph * graph)
 void DjikstraAlghoritm::apply(Graph * graph)
 {
 	pointValueStructure currPointStruct;
-	while (queue->getSize() != 0)
+	for(int vIndex = 0; vIndex < graph->getAmountPoints(); vIndex++)
 	{
 		currPointStruct = queue->popElement();
 				

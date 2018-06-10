@@ -148,8 +148,7 @@ PriorityQueue<Edge> ListGraph::getConnections(List<int>& source)
 	while (currPoint != nullptr)
 	{
 		for (int i = 0; i < this->getAmountPoints(); i++)
-			if (getEdgeValue(currPoint->data, i) != 0 && !source.findValue(i) 
-					&& !output.findValue(Edge(1, currPoint->data, i)))
+			if (getEdgeValue(currPoint->data, i) != 0 )
 				output.addElement(Edge(getEdgeValue(currPoint->data, i), currPoint->data, i, isDirected));
 		currPoint = currPoint->next.get();
 	}
