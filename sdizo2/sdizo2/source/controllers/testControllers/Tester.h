@@ -18,12 +18,11 @@ private:
 	static const int vertexArraySize = 5;
 
 	int densityTable[densityArraySize] = {25, 50, 75, 99 };
-	int vertexCountTable[vertexArraySize] = { 100, 200, 300, 400, 500};
+	int vertexCountTable[vertexArraySize] = { 50, 100, 200, 300, 400};
 	/*int vertexCountTable[vertexArraySize] = { 7, 7, 7, 7, 7};*/
 	int valueRange = 100;
 	int valueBase = 1;
 
-	void test(IAlghoritm* alg, bool directed);
 	void sppTests();
 	void djikstraTest();
 	void bfTest();

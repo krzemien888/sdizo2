@@ -11,13 +11,14 @@ using namespace std;
 
 void Tester::runAllTests()
 {
+	this->filename = "Tests.csv";
 	cout << "Minimal spining tree problem started" << endl;
-	/*mstTests();*/
+	mstTests();
 	cout << "Minimal spining tree problem ended" << endl;
-	cout << "Shortest path problem started" << endl;
-	/*sppTests();*/
-	cout << "Shortest path problem ended" << endl;
 
+	cout << "Shortest path problem started" << endl;
+	sppTests();
+	cout << "Shortest path problem ended" << endl;
 
 	cout << "Maximum flow problem started" << endl;
 	flowTests();
@@ -28,7 +29,7 @@ void Tester::runAllTests()
 void Tester::sppTests()
 {
 	cout << "Testing Djikstra alghoritm" << endl;
-	/*djikstraTest();*/
+	djikstraTest();
 	cout << "Testing Bellman-Ford alghoritm" << endl;
 	bfTest();
 }
@@ -48,12 +49,6 @@ void Tester::djikstraTest()
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
-		
-		filename = "Djikstra-matrix-" + to_string(densityTable[densityIndex]) + "-" + ".csv";
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
 
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
@@ -69,12 +64,12 @@ void Tester::djikstraTest()
 				djAlg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Djikstra", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime/100);
 		}
 	}
 
@@ -84,13 +79,6 @@ void Tester::djikstraTest()
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
-
-		filename = "Djikstra-list-" + to_string(densityTable[densityIndex]) + "-" + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
 
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
@@ -106,12 +94,12 @@ void Tester::djikstraTest()
 				djAlg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Djikstra", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 }
@@ -131,14 +119,6 @@ void Tester::bfTest()
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
-
-		filename = "BellmanFord-matrix-" + to_string(densityTable[densityIndex]) + "-" + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
-
 		
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
@@ -154,12 +134,12 @@ void Tester::bfTest()
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Bellman-Ford", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 
@@ -169,14 +149,6 @@ void Tester::bfTest()
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
-
-		filename = "BellmanFord-list-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
-
 		
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
@@ -192,12 +164,12 @@ void Tester::bfTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Bellman-Ford", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 }
@@ -205,7 +177,7 @@ void Tester::bfTest()
 void Tester::mstTests()
 {
 	cout << "Testing Kruskal alghoritm" << endl;
-	/*kruskalTest();*/
+	kruskalTest();
 	cout << "Testing Prim alghoritm" << endl;
 	primTest();
 }
@@ -226,12 +198,6 @@ void Tester::kruskalTest()
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
 
-		filename = "Kruskal-matrix-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
@@ -247,12 +213,12 @@ void Tester::kruskalTest()
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Kruskal", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 
@@ -263,12 +229,6 @@ void Tester::kruskalTest()
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
 
-		filename = "Kruskal-list-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
@@ -284,12 +244,12 @@ void Tester::kruskalTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Kruskal", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 }
@@ -310,12 +270,6 @@ void Tester::primTest()
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
 
-		filename = "Prim-matrix-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
@@ -338,12 +292,12 @@ void Tester::primTest()
 					system("pause");
 				}
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Prim", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 
@@ -354,15 +308,6 @@ void Tester::primTest()
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
 
-		filename = "Prim-list-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
-
-
-		
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
@@ -376,12 +321,12 @@ void Tester::primTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Prim", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 }
@@ -415,14 +360,6 @@ void Tester::ffDFSTest()
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
-
-		
-		this->filename = "ff-DFS-matrix-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
 		
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
@@ -439,12 +376,12 @@ void Tester::ffDFSTest()
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-DFS", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 
@@ -454,14 +391,6 @@ void Tester::ffDFSTest()
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
-		filename = "ff-DFS-list-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
-
-
 		
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
@@ -478,12 +407,12 @@ void Tester::ffDFSTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-DFS", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 }
@@ -505,15 +434,6 @@ void Tester::ffBFSTest()
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
 
-
-
-		filename = "ff-BFS-list-matrix-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
-
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
@@ -528,12 +448,12 @@ void Tester::ffBFSTest()
 				Alg.apply(&m);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-BFS", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 
@@ -543,14 +463,6 @@ void Tester::ffBFSTest()
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
-
-		
-		filename = "ff-BFS-list-" + to_string(densityTable[densityIndex]) + ".csv";
-
-		// Clearing the file
-		std::ofstream ofs;
-		ofs.open(filename, std::ofstream::out | std::ofstream::trunc);
-		ofs.close();
 		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
 		{
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
@@ -567,57 +479,13 @@ void Tester::ffBFSTest()
 				Alg.apply(&l);
 				endTime = chrono::high_resolution_clock::now();
 
-				totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-
-				cout << "Progress: " << i * 100 / 100 << "\r";
+				double currTime = (double)std::chrono::duration_cast<chrono::microseconds>(endTime - startTime).count();
+				totalTime += currTime;
+				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-BFS", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
 		}
 	}
 	
-}
-
-void Tester::test(IAlghoritm * alg, bool list)
-{
-	chrono::high_resolution_clock::time_point startTime;
-	chrono::high_resolution_clock::time_point endTime;
-	double totalTime = 0;
-	Graph* graph = nullptr;
-
-	if (list)
-	{
-		graph = new ListGraph();
-	}
-	else
-	{
-		graph = new MatrixGraph();
-	}
-
-	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
-	{
-		cout << "Density: " << densityTable[densityIndex] << endl;
-		for (int vertexCountIndex = 0; vertexCountIndex < vertexArraySize; vertexCountIndex++)
-		{
-			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
-			totalTime = 0;
-			graph->generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
-			for (int i = 0; i < 100; i++)
-			{
-				double currTime = 0;
-				alg->prepare(graph);
-
-				startTime = chrono::high_resolution_clock::now();
-				alg->apply(graph);
-				endTime = chrono::high_resolution_clock::now();
-
-				currTime = (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-				totalTime += currTime;
-				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" <<"\r";
-			}
-			cout << endl;
-			saveToFile(vertexCountTable[vertexCountIndex], totalTime / 100);
-		}
-	}
-	delete graph;
 }

@@ -38,3 +38,14 @@ void genericTestController::saveToFile(std::string message)
 	}
 	file.close();
 }
+
+void genericTestController::saveToFile(std::string algorithm, std::string representation, float density, int vertexCount, double totalTime)
+{
+	std::string message = "";
+	message.append(algorithm + ";");
+	message.append(representation + ";");
+	message.append(std::to_string(density) + ";");
+	message.append(std::to_string(vertexCount) + ";");
+	message.append(std::to_string(totalTime));
+	this->saveToFile(message);
+}

@@ -14,6 +14,7 @@ public:
 protected:
 	virtual void saveToFile(int testSize, double time);
 	virtual void saveToFile(std::string message);
+	virtual void saveToFile(std::string algorithm, std::string representation, float density, int vertexCount, double totalTime);
 
 	std::string filename;
 
