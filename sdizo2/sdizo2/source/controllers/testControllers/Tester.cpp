@@ -13,11 +13,11 @@ void Tester::runAllTests()
 {
 	this->filename = "Tests.csv";
 	cout << "Minimal spining tree problem started" << endl;
-	mstTests();
+	/*mstTests();*/
 	cout << "Minimal spining tree problem ended" << endl;
 
 	cout << "Shortest path problem started" << endl;
-	sppTests();
+	/*sppTests();*/
 	cout << "Shortest path problem ended" << endl;
 
 	cout << "Maximum flow problem started" << endl;
