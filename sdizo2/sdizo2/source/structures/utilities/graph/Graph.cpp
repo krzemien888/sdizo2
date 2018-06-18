@@ -2,7 +2,7 @@
 #include "Graph.h"
 #include "structures\utilities\disjoinSet\DisjoinSet.h"
 
-int Graph::getAmountPoints()
+int Graph::getAmountPoints() const
 {
 	return m_amountPoints;
 }

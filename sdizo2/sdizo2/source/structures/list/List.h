@@ -30,7 +30,7 @@ public:
 	int getSize() const;
 	bool operator==(const List<T>& l);
 
-	List<T>& operator=(const List<T>&l);
+	List<T>& operator=( List<T>&l);
 	void setDiplayInline(bool toset);
 	bool isInlineDisplayed();
 
@@ -97,12 +97,20 @@ bool List<T>::operator==(const List<T>& l)
 }
 
 template<class T>
-inline List<T>& List<T>::operator=(const List<T>& l)
+inline List<T>& List<T>::operator=( List<T>& l)
 {
-	if (this == &l)
-		return *this;
-	for (int i = 0; i < l.getSize(); i++)
-		pushBack(l.getValue(i));
+	/*if (this == &l)
+		return *this;*/
+
+	
+	auto it = l.getNodePtr(0);
+	while (it != nullptr)
+	{
+		this->pushBack(it->data);
+		it = it->next.get();
+	}
+	/*for (int i = 0; i < l.getSize(); i++)
+		pushBack(l.getValue(i));*/
 	return *this;
 }
 
@@ -153,8 +161,14 @@ T List<T>::getValue(int index) const
 template<class T>
 inline List<T>::List(const List<T> &l)
 {
-	for (int i = 0; i < l.getSize(); i++)
-		pushBack(l.getValue(i));
+	auto it = l.head.get();
+	while (it != nullptr)
+	{
+		this->pushBack(it->data);
+		it = it->next.get();
+	}
+	/*for (int i = 0; i < l.getSize(); i++)
+		pushBack(l.getValue(i));*/
 }
 
 template<class T>
@@ -373,6 +387,6 @@ typename List<T>::Node* List<T>::getNodePtr(int index)
 	shared_ptr<Node> currNode = head;
 	for (int i = 0; i < index && currNode != nullptr; ++i)
 		currNode = currNode->next;
-
-	return currNode.get();
+	auto ptr = currNode.get();
+	return ptr;
 }

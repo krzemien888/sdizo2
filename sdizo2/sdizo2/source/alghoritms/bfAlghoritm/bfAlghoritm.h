@@ -19,7 +19,7 @@ struct queueStructure {
 	int parentPoint = -1;
 	int value = std::numeric_limits<int>::max();
 
-	queueStructure() = default;
+	queueStructure();
 	queueStructure(int point);
 	queueStructure(int point, int parentPoint, int value);
 	bool operator==(const queueStructure& e);
@@ -34,7 +34,7 @@ struct queueStructure {
 };
 
 	bfAlghoritm() = default;
-	~bfAlghoritm();
+	~bfAlghoritm() = default;
 	void prepare(Graph* graph) override;
 	void apply(Graph* graph) override;
 	void setParameters(int newStartPoint, int = 0);
@@ -45,7 +45,7 @@ private:
 
 	int m_startPoint = 0;
 	int m_currentGraphSize = 0;
-	queueStructure* m_array = nullptr;
+	Array<queueStructure> m_array;
 	List<Edge> m_primalEdgeList;
 };
 

@@ -63,15 +63,14 @@ bool FordFulkersonAlghoritm::searchDFS(Graph * graph, int * introducedArray, Ang
 	//DFS Search
 	int currPoint = -1;
 	stack.add(m_startPoint);
-	/*auto startTime = chrono::high_resolution_clock::now();
-	double totalTime = 0;*/
+	auto startTime = chrono::high_resolution_clock::now();
+	double totalTime = 0;
 	
-	while (!stack.isEmpty())
+	while (!(stack.isEmpty() || found))
 	{
 		currPoint = stack.pop();
 
 		auto allNeighbours = graph->getNeighbours(currPoint);
-
 		while (allNeighbours.getSize() != 0)
 		{
 			auto neighbour = allNeighbours.popFrontElement();
@@ -86,13 +85,13 @@ bool FordFulkersonAlghoritm::searchDFS(Graph * graph, int * introducedArray, Ang
 					break;
 				}
 			}
-			/*auto endTime = chrono::high_resolution_clock::now();
+			auto endTime = chrono::high_resolution_clock::now();
 			totalTime += (double)std::chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count();
-			if (totalTime > 10) {
+			if (totalTime > 20000000) {
 				graph->print();
 				system("pause");
 				return false;
-			}*/
+			}
 		}
 	}
 
@@ -114,7 +113,7 @@ bool FordFulkersonAlghoritm::searchBFS(Graph * graph, int* introducedArray, Angu
 	//BFS Search
 	int currPoint = -1;
 	queue.add(m_startPoint);
-	while (!queue.isEmpty())
+	while (!(queue.isEmpty() || found))
 	{
 		currPoint = queue.pop();
 

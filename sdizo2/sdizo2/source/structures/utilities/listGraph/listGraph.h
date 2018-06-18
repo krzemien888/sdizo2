@@ -10,14 +10,15 @@ class ListGraph
 {
 public:
 	ListGraph();
-	ListGraph(ListGraph & l);
-
+	ListGraph(const ListGraph & l);
+	ListGraph(ListGraph && l);
 	void clear();
 	void addEdge(const Edge &e) override;
 	void addPoint(const Point &p) override;
 	shared_ptr<Edge> getEdge(int a, int b) override;
 	List<Edge> getEdges() override;
-	List<Edge> getNeighbours(int p) override;
+	virtual PriorityQueue<Edge> getEdgesSorted() override;
+	List<Edge> getNeighbours(int p) const override;
 	void addNeighboursSorted(int a, PriorityQueue<Edge> &queue) override;
 	PriorityQueue<Edge> getConnections(List<int> &source) override;
 	int getSize();

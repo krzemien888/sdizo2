@@ -8,7 +8,7 @@ ListGraph::ListGraph()
 
 }
 
-ListGraph::ListGraph(ListGraph& l)
+ListGraph::ListGraph(const ListGraph& l)
 {
 	resize(l.getAmountPoints());
 
@@ -18,6 +18,12 @@ ListGraph::ListGraph(ListGraph& l)
 		while (neighbours.getSize() != 0)
 			addEdge(neighbours.popFrontElement());
 	}
+}
+
+ListGraph::ListGraph(ListGraph && l)
+{
+	this->m_size = l.m_size;
+	this->m_data = l.m_data;
 }
 
 void ListGraph::clear()
@@ -115,7 +121,22 @@ List<Edge> ListGraph::getEdges()
 	return output;
 }
 
-List<Edge> ListGraph::getNeighbours(int p)
+PriorityQueue<Edge> ListGraph::getEdgesSorted()
+{
+	PriorityQueue<Edge> output;
+
+	for (int i = 0; i < getAmountPoints(); i++)
+	{
+		auto neighbourList = getNeighbours(i);
+		while (neighbourList.getSize() != 0)
+			output.addElement(neighbourList.popFrontElement());
+	}
+
+
+	return output;
+}
+
+List<Edge> ListGraph::getNeighbours(int p) const
 {
 	List<Edge> output;
 	Node* curr = (m_data[p]).next;
@@ -147,9 +168,11 @@ PriorityQueue<Edge> ListGraph::getConnections(List<int>& source)
 
 	while (currPoint != nullptr)
 	{
-		for (int i = 0; i < this->getAmountPoints(); i++)
-			if (getEdgeValue(currPoint->data, i) != 0 )
-				output.addElement(Edge(getEdgeValue(currPoint->data, i), currPoint->data, i, isDirected));
+		auto neighbours = this->getNeighbours(currPoint->data);
+		for (int i = 0; i < neighbours.getSize(); i++)
+		{
+			output.addElement(Edge(getEdgeValue(currPoint->data, i), currPoint->data, i, isDirected));
+		}
 		currPoint = currPoint->next.get();
 	}
 	return output;

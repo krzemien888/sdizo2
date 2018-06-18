@@ -3,52 +3,59 @@
 
 using namespace std;
 
-bfAlghoritm::~bfAlghoritm()
-{
-	if (m_array != nullptr)
-		delete[] m_array;
-}
+//bfAlghoritm::~bfAlghoritm()
+//{
+//	if (m_array != nullptr)
+//		delete[] m_array;
+//}
 
 void bfAlghoritm::prepare(Graph * graph)
 {
 	m_currentGraphSize = graph->getAmountPoints();
-
-	delete[] m_array;
-	m_array = nullptr;
 	
-	m_array = new queueStructure[m_currentGraphSize];
+	m_array.clearStructure();
 
-	m_primalEdgeList = graph->getEdges();
+	//m_primalEdgeList = graph->getEdges();
 
 	for (int i = 0; i < m_currentGraphSize; i++)
 	{
-		if(i == m_startPoint)
-			m_array[i] = queueStructure(i, -1, 0);
+		if (i == m_startPoint)
+		{
+			m_array.addElement(i, queueStructure(i, -1, 0));
+		}
 		else
-			m_array[i] = queueStructure(i);
+		{
+			m_array.addElement(i, queueStructure(i, -1, std::numeric_limits<int>::max()));
+		}
 	}
+
+
 }
 
 void bfAlghoritm::apply(Graph * graph)
 {
+	List<Edge> edges = graph->getEdges();
 	for (int i = 0; i < m_currentGraphSize - 1; i++)
 	{
 		bool corrected = false;
-		auto listIterator = m_primalEdgeList.getNodePtr(0);
-		for (int i = 0; i < m_primalEdgeList.getSize(); i++)
+		List<Edge>::Node* listIterator = edges.getNodePtr(this->m_startPoint);
+		while(listIterator != nullptr)
 		{
-			Edge currEdge = listIterator->data;
+			int end = listIterator->data.getEndName();
+			int start = listIterator->data.getStartName();
 			
-			if (m_array[currEdge.getStartName()].value == numeric_limits<int>::max() )
+			if (m_array.getValue(start).value == numeric_limits<int>::max() )
 			{
 				listIterator = listIterator->next.get();
 				continue;
 			}
 			
-			if(m_array[currEdge.getEndName()].value > m_array[currEdge.getStartName()].value + currEdge.getValue())
+			if(m_array.getValue(end).value > m_array.getValue(start).value + listIterator->data.getValue())
 			{
-				m_array[currEdge.getEndName()].value = m_array[currEdge.getStartName()].value + currEdge.getValue();
-				m_array[currEdge.getEndName()].parentPoint = currEdge.getStartName();
+				auto startStructurePtr = this->m_array.getPtr(start);
+				auto endStructurePtr = this->m_array.getPtr(end);
+				endStructurePtr->value = startStructurePtr->value + listIterator->data.getValue();
+				endStructurePtr->parentPoint = start;
 				corrected = true;
 			}
 
@@ -74,12 +81,12 @@ void bfAlghoritm::printResult()
 	cout << "Cel\tDystans\tTor" << endl;
 	for (int i = 0; i < m_currentGraphSize; i++)
 	{
-		cout << i << "\t" << m_array[i].value << "\t";
+		cout << i << "\t" << m_array.getValue(i).value << "\t";
 		auto pathFinder = i;
 		while (pathFinder != -1)
 		{
 			displayer.pushFront(pathFinder);
-			pathFinder = m_array[pathFinder].parentPoint;
+			pathFinder = m_array.getValue(pathFinder).parentPoint;
 		}
 		while (displayer.getSize() != 0)
 			cout << displayer.popFrontElement() << " ";
@@ -87,9 +94,15 @@ void bfAlghoritm::printResult()
 	}
 }
 
+bfAlghoritm::queueStructure::queueStructure()
+{
+	this->value = std::numeric_limits<int>::max();
+}
+
 bfAlghoritm::queueStructure::queueStructure(int apoint)
 {
 	point = apoint;
+	this->value = std::numeric_limits<int>::max();
 }
 
 bfAlghoritm::queueStructure::queueStructure(int apoint, int aparentPoint, int avalue)

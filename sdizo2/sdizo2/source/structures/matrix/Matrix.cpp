@@ -74,7 +74,7 @@ void Matrix::setValue(int x, int y, int value)
 	m_data[x][y] = value;
 }
 
-int Matrix::getValue(int x, int y)
+int Matrix::getValue(int x, int y) const
 {
 	return m_data[x][y];
 }

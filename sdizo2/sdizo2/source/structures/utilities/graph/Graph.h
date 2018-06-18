@@ -16,8 +16,9 @@ public:
 	virtual void generate(int density, int vertex, int range, int baseValue, bool directed);
 
 	virtual shared_ptr<Edge> getEdge(int a, int b) = 0;
-	virtual List<Edge> getNeighbours(int a) = 0;
+	virtual List<Edge> getNeighbours(int a) const = 0;
 	virtual List<Edge> getEdges() = 0;
+	virtual PriorityQueue<Edge> getEdgesSorted() = 0;
 	virtual void addNeighboursSorted(int a, PriorityQueue<Edge> &queue) = 0;
 	virtual PriorityQueue<Edge> getConnections(List<int> &source) = 0;
 	virtual int getEdgeValue(int a, int b) = 0;
@@ -28,7 +29,7 @@ public:
 	virtual void clear() = 0;
 
 	virtual void print() = 0;
-	virtual int getAmountPoints();
+	virtual int getAmountPoints() const;
 	virtual int getDensity();
 	virtual int getAmountEdges();
 

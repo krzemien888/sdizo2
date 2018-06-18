@@ -15,9 +15,10 @@ public:
 	void addPoint(const Point &p) override;
 	shared_ptr<Edge> getEdge(int a, int b) override;
 	List<Edge> getEdges() override;
+	PriorityQueue<Edge> getEdgesSorted() override;
 	void addNeighboursSorted(int a, PriorityQueue<Edge> &queue) override;
 	PriorityQueue<Edge> getConnections(List<int> &source) override;
-	List<Edge> getNeighbours(int p) override;
+	List<Edge> getNeighbours(int p)const override;
 	void print();
 	MatrixGraph* getBlanck() override;
 	int getEdgeValue(int a, int b) override;

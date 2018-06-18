@@ -16,10 +16,11 @@ private:
 
 	static const int densityArraySize = 4;
 	static const int vertexArraySize = 5;
+	static const int repeatTest = 100;
 
 	int densityTable[densityArraySize] = {25, 50, 75, 99 };
-	int vertexCountTable[vertexArraySize] = { 50, 100, 200, 300, 400};
-	/*int vertexCountTable[vertexArraySize] = { 7, 7, 7, 7, 7};*/
+	int vertexCountTable[vertexArraySize] = { 50, 100, 150, 200, 250 };
+	/*int vertexCountTable[vertexArraySize] = { 50, 50, 50, 50, 50};*/
 	int valueRange = 100;
 	int valueBase = 1;
 

@@ -154,7 +154,7 @@ public:
 	T getValue(int index) const
 	{
 		if (index >= currSize)
-			throw std::invalid_argument("Out of Array range");
+			throw std::invalid_argument("Out of Array range, index " + std::to_string(index) + " out of " + std::to_string(currSize));
 		return data[index];
 	};
 
@@ -175,7 +175,8 @@ public:
 
 	T* getPtr(int index) const
 	{
-		return &(data[index]);
+		/*return &(data[index]);*/
+		return data + index;
 	};
 
 	int getAllocatedSize() const

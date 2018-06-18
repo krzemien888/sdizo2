@@ -23,24 +23,40 @@ void PrimAlghoritm::printResult()
 
 void PrimAlghoritm::apply(Graph * graph)
 {
-	List<int> donePoints;
-	donePoints.clearStructure();
-	donePoints.addElement(0);
-	Array<bool> visitedVertices(graph->getAmountPoints(), false);
-	visitedVertices.setValue(0, true);
-	
-	while (donePoints.getSize() != m_currentGraphSize)
+	m_resultList.clearStructure();
+	PriorityQueue<Edge> queue;
+	Array<int> parentArray(graph->getAmountPoints(), -1);
+	Array<int> costArray(graph->getAmountPoints(), numeric_limits<int>::max());
+	Array<bool> addedArray(graph->getAmountPoints(), false);
+
+	costArray.setValue(0, 0);
+	queue.addElement(Edge(0, 0, 0));
+	while (queue.getSize() != 0)
 	{
-		auto con = graph->getConnections(donePoints);
-		while (con.getSize() != 0)
+		auto current = queue.popElement().getEndName();
+		addedArray.setValue(current, true);
+		auto neighbours = graph->getNeighbours(current);
+		auto it = neighbours.getNodePtr(0);
+;		while (it != nullptr)
 		{
-			auto currPoint = con.popElement();
-			if (!visitedVertices.getValue(currPoint.getEndName()))
+			auto itVal = it->data;
+			int neighbourWeight = itVal.getValue();
+			int neighbourVertex = itVal.getEndName();
+			if (!addedArray.getValue(neighbourVertex) && costArray.getValue(neighbourVertex) > neighbourWeight)
 			{
-				m_resultList.pushBack(currPoint);
-				donePoints.addElement(currPoint.getEndName());
-				visitedVertices.setValue(currPoint.getEndName(), true);
+				parentArray.setValue(neighbourVertex, current);
+				costArray.setValue(neighbourVertex, neighbourWeight);
+				queue.addElement(itVal);
 			}
+			it = it->next.get();
+		}
+	}
+
+	for (int i = 0; i < graph->getAmountPoints(); i++)
+	{	
+		if (parentArray.getValue(i) != -1)
+		{
+			this->m_resultList.addElement(*(graph->getEdge(i, parentArray.getValue(i))));
 		}
 	}
 }

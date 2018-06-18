@@ -72,6 +72,31 @@ shared_ptr<Edge> MatrixGraph::getEdge(int a, int b)
 List<Edge> MatrixGraph::getEdges()
 {
 	List<Edge> output;
+	if (isDirected)
+	{
+		for (int i = 0; i < getAmountPoints(); i++)
+		{
+			auto neighbourList = getNeighbours(i);
+			while (neighbourList.getSize() != 0)
+			{
+				output.addElement(neighbourList.popFrontElement());
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < getAmountPoints(); i++)
+			for (int j = 0; j <= i; j++)
+				if (m_matrix.getValue(i, j) != 0)
+					output.addElement(Edge(m_matrix.getValue(i, j), i, j));
+	}
+
+	return output;
+}
+
+PriorityQueue<Edge> MatrixGraph::getEdgesSorted()
+{
+	PriorityQueue<Edge> output;
 
 	if (isDirected)
 	{
@@ -119,7 +144,7 @@ PriorityQueue<Edge> MatrixGraph::getConnections(List<int>& source)
 	return output;
 }
 
-List<Edge> MatrixGraph::getNeighbours(int p)
+List<Edge> MatrixGraph::getNeighbours(int p) const
 {
 	List<Edge> output;
 	for (int i = 0; i < this->getAmountPoints(); i++)

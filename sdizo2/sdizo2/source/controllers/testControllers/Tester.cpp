@@ -17,11 +17,11 @@ void Tester::runAllTests()
 	cout << "Minimal spining tree problem ended" << endl;
 
 	cout << "Shortest path problem started" << endl;
-	/*sppTests();*/
+	sppTests();
 	cout << "Shortest path problem ended" << endl;
 
 	cout << "Maximum flow problem started" << endl;
-	flowTests();
+	/*flowTests();*/
 	cout << "Maximum flow problem ended" << endl;
 }
 
@@ -29,7 +29,7 @@ void Tester::runAllTests()
 void Tester::sppTests()
 {
 	cout << "Testing Djikstra alghoritm" << endl;
-	djikstraTest();
+	/*djikstraTest();*/
 	cout << "Testing Bellman-Ford alghoritm" << endl;
 	bfTest();
 }
@@ -55,7 +55,7 @@ void Tester::djikstraTest()
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
 			totalTime = 0;
 			
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
 				djAlg.prepare(&m);
@@ -85,7 +85,7 @@ void Tester::djikstraTest()
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
 			totalTime = 0;
 			
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
 				djAlg.prepare(&l);
@@ -99,7 +99,7 @@ void Tester::djikstraTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Djikstra", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Djikstra", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 }
@@ -125,7 +125,7 @@ void Tester::bfTest()
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
 			totalTime = 0;
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
 				Alg.prepare(&m);
@@ -139,7 +139,7 @@ void Tester::bfTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Bellman-Ford", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Bellman-Ford", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 
@@ -155,7 +155,7 @@ void Tester::bfTest()
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
 			totalTime = 0;
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
 				Alg.prepare(&l);
@@ -169,7 +169,7 @@ void Tester::bfTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Bellman-Ford", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Bellman-Ford", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 }
@@ -204,7 +204,7 @@ void Tester::kruskalTest()
 			totalTime = 0;
 
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&m);
@@ -218,7 +218,7 @@ void Tester::kruskalTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Kruskal", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Kruskal", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 
@@ -235,7 +235,7 @@ void Tester::kruskalTest()
 			totalTime = 0;
 
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&l);
@@ -249,7 +249,7 @@ void Tester::kruskalTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Kruskal", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Kruskal", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 }
@@ -276,7 +276,7 @@ void Tester::primTest()
 			totalTime = 0;
 
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&m);
@@ -297,7 +297,7 @@ void Tester::primTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Prim", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Prim", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 
@@ -312,7 +312,7 @@ void Tester::primTest()
 		{
 			cout << "Vertex count: " << vertexCountTable[vertexCountIndex] << endl;
 			totalTime = 0;
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, false);
 				Alg.prepare(&l);
@@ -326,7 +326,7 @@ void Tester::primTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Prim", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Prim", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 }
@@ -337,10 +337,10 @@ void Tester::flowTests()
 {
 	int old = this->valueRange;
 	this->valueRange = 20;
-	cout << "Ford - Fulkerson alghoritm with DFS seach testing" << endl;
-	ffDFSTest();
 	cout << "Ford - Fulkerson alghoritm with BFS seach testing" << endl;
 	ffBFSTest();
+	cout << "Ford - Fulkerson alghoritm with DFS seach testing" << endl;
+	ffDFSTest();
 	this->valueRange = old;
 }
 
@@ -350,6 +350,7 @@ void Tester::ffDFSTest()
 	
 	FordFulkersonAlghoritm Alg;
 	Alg.setMode(true);
+	Alg.setOuputType(AlghoritmOutputSetting::matrix);
 	int vertexCountIndex = 0;
 
 	chrono::high_resolution_clock::time_point startTime;
@@ -367,7 +368,7 @@ void Tester::ffDFSTest()
 			Alg.setParameters(0, vertexCountTable[vertexCountIndex] - 1);
 			totalTime = 0;
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
 				Alg.prepare(&m);
@@ -381,13 +382,13 @@ void Tester::ffDFSTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Ford-Fulkerson-DFS", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-DFS", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 
 	cout << "List testing" << endl;
 	ListGraph l;
-
+	Alg.setOuputType(AlghoritmOutputSetting::list);
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
 		cout << "Density: " << densityTable[densityIndex] << endl;
@@ -398,7 +399,7 @@ void Tester::ffDFSTest()
 			Alg.setParameters(0, vertexCountTable[vertexCountIndex] - 1);
 			totalTime = 0;
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
 				Alg.prepare(&l);
@@ -412,7 +413,7 @@ void Tester::ffDFSTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Ford-Fulkerson-DFS", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-DFS", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 }
@@ -423,6 +424,7 @@ void Tester::ffBFSTest()
 
 	FordFulkersonAlghoritm Alg;
 	Alg.setMode(false);
+	Alg.setOuputType(AlghoritmOutputSetting::matrix);
 	int vertexCountIndex = 0;
 
 	chrono::high_resolution_clock::time_point startTime;
@@ -440,7 +442,7 @@ void Tester::ffBFSTest()
 			Alg.setParameters(0, vertexCountTable[vertexCountIndex] - 1);
 			totalTime = 0;
 			m.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				Alg.prepare(&m);
 
@@ -453,12 +455,13 @@ void Tester::ffBFSTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Ford-Fulkerson-BFS", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-BFS", "Matrix graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 
 	cout << "List testing" << endl;
 	ListGraph l;
+	Alg.setOuputType(AlghoritmOutputSetting::list);
 
 	for (int densityIndex = 0; densityIndex < densityArraySize; densityIndex++)
 	{
@@ -471,7 +474,7 @@ void Tester::ffBFSTest()
 
 
 			l.generate(densityTable[densityIndex], vertexCountTable[vertexCountIndex], valueRange, valueBase, true);
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < this->repeatTest; i++)
 			{
 				Alg.prepare(&l);
 
@@ -484,7 +487,7 @@ void Tester::ffBFSTest()
 				cout << "Progress: " << i * 100 / 100 << "(" << currTime << ")" << "\r";
 			}
 			cout << endl;
-			this->saveToFile("Ford-Fulkerson-BFS", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex], totalTime / 100);
+			this->saveToFile("Ford-Fulkerson-BFS", "List graph", densityTable[densityIndex], vertexCountTable[vertexCountIndex],totalTime/this->repeatTest);
 		}
 	}
 	

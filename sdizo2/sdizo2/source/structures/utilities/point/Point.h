@@ -14,9 +14,10 @@ public:
 	static void resetCounter(int base);
 
 	bool operator==(const Point& p) const;
+	int m_name;
 
 private:
-	int m_name;
 	static int Point::nameCounter;
+
 };
 

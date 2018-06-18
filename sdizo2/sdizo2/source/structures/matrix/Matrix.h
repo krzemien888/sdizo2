@@ -9,7 +9,7 @@ public:
 	void print();
 
 	void setValue(int x, int y, int value);
-	int getValue(int x, int y);
+	int getValue(int x, int y) const;
 
 	int getSize();
 
